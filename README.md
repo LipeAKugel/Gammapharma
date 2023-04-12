@@ -1,2 +1,4 @@
-# app_farmacia
-Farmacy application project, developed for college course "Orientação à Objetos"
+# Pharmacy application
+Farmacy mini application project made with Java, using concepts of object oriented programming.
+
+Developed during college course "Orientação à Objetos"
