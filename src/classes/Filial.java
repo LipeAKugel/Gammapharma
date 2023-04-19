@@ -1,3 +1,4 @@
+package classes;
 
 public class Filial {
 	
@@ -5,7 +6,6 @@ public class Filial {
 	private String nome;
 	private String cnpj;
 	private Endereco endereco;
-	private Produto listaProdutos[];
 	
 	// Construtores.
 	public Filial(String nome, String cnpj, Endereco endereco) {
@@ -21,6 +21,9 @@ public class Filial {
 	public String getCnpj() {
 		return cnpj;
 	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
 	
 	// Sets.
 	public void setNome(String nome) {
@@ -29,6 +32,7 @@ public class Filial {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	
-	// Métodos.
+	public void setEndereco(Endereco end) {
+		endereco = end;
+	}
 }

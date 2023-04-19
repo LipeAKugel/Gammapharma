@@ -1,15 +1,16 @@
+package classes;
 
 public class Endereco {
 	
 	// Atributos.
 	private String logradouro;
 	private String complemento;
-	private int cep;
+	private String cep;
 	private String cidade;
 	private String estado;
 	
 	// Construtores.
-	public Endereco(String lograd, String comp, int cep,
+	public Endereco(String lograd, String comp, String cep,
 				    String cidade, String estado) {
 		logradouro = lograd;
 		complemento = comp;
@@ -25,7 +26,7 @@ public class Endereco {
 	public String getComp() {
 		return complemento;
 	}
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 	public String getCidade() {
@@ -42,7 +43,7 @@ public class Endereco {
 	public void setComp(String comp) {
 		complemento = comp;
 	}
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	public void setCidade(String cidade) {
@@ -50,6 +51,18 @@ public class Endereco {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	// toString.
+	public String toString() {
+		String format;
+		format = logradouro + "\n" +
+				 complemento + "\n" +
+				 cep + "\n" +
+				 cidade + "\n" +
+				 estado + "\n";
+				 
+		return format;
 	}
 	
 }

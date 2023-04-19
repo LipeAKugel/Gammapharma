@@ -1,3 +1,4 @@
+package classes;
 
 public class Produto {
 
@@ -7,7 +8,7 @@ public class Produto {
 	private String marca;
 	private double preco;
 	
-	// Construtores.
+	// Construtor.
 	public Produto(String nome, String categoria,
 				   String marca, double preco) {
 		this.nome = nome;
@@ -46,7 +47,5 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	
-	// Métodos.
 	
 }
