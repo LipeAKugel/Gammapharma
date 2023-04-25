@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 public class Endereco {
 	
 	// Atributos.
@@ -63,6 +65,5 @@ public class Endereco {
 				 estado + "\n";
 				 
 		return format;
-	}
-	
+	}	
 }
