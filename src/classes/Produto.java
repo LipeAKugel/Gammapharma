@@ -48,4 +48,9 @@ public class Produto {
 		this.preco = preco;
 	}
 	
+	// toString.
+	public String toString() {
+		return "Nome: " + nome + ", Categoria: " + categoria + ", Marca: " + marca +
+			   ", Preço: " + "R$" + preco; 
+	}
 }

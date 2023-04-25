@@ -35,4 +35,9 @@ public class Filial {
 	public void setEndereco(Endereco end) {
 		endereco = end;
 	}
+	
+	// toString.
+	public String toString() {
+		return "Nome: " + nome + ", CNPJ: " + cnpj + ", Cidade: " + endereco.getCidade();
+	}
 }

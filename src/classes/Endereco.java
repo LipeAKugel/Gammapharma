@@ -1,10 +1,8 @@
 package classes;
 
-import java.util.ArrayList;
-
 public class Endereco {
 	
-	// Atributos.
+	// Atributos. (perguntar sobre logradouro)
 	private String logradouro;
 	private String complemento;
 	private String cep;
@@ -57,13 +55,16 @@ public class Endereco {
 	
 	// toString.
 	public String toString() {
-		String format;
+		String saida;
+		/*
 		format = logradouro + "\n" +
 				 complemento + "\n" +
 				 cep + "\n" +
 				 cidade + "\n" +
 				 estado + "\n";
-				 
-		return format;
+		*/
+		
+		saida = logradouro + ", " + complemento + ", " + cep + ", " + cidade + ", " + estado;
+		return saida;
 	}	
 }
