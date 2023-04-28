@@ -1,33 +1,49 @@
 package classes;
 
-public class Produto {
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public abstract class Produto {
 
 	// Atributos.
-	private String nome;
-	private String categoria;
-	private String marca;
-	private double preco;
+	protected String nome;
+	protected String marca;
+	protected String fabricante;
+	protected Date validade;
+	protected double peso;
+	protected double preco;
 	
 	// Construtor.
-	public Produto(String nome, String categoria,
-				   String marca, double preco) {
+	public Produto(String nome, String marca, String fab, Date val,
+				   double peso, double preco) {
 		this.nome = nome;
-		this.categoria = categoria;
 		this.marca = marca;
+		fabricante = fab;
+		validade = val;
+		this.peso = peso;
 		this.preco = preco;
 	}
+	
 	
 	// Gets.
 	public String getNome() {
 		return nome;
 	}
 	
-	public String getCategoria() {
-		return categoria;
-	}
-	
 	public String getMarca() {
 		return marca;
+	}
+	
+	public String getFab() {
+		return fabricante;
+	}
+	
+	public Date getValidade() {
+		return validade;
+	}
+	
+	public double getPeso() {
+		return peso;
 	}
 	
 	public double getPreco() {
@@ -38,19 +54,36 @@ public class Produto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
+	
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+	
+	public void setFabricante(String fab) {
+		fabricante = fab;
+	}
+	
+	public void setValidade(Date val) {
+		validade = val;
+	}
+	
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+	
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
 	
 	// toString.
 	public String toString() {
-		return "Nome: " + nome + ", Categoria: " + categoria + ", Marca: " + marca +
-			   ", Preço: " + "R$" + preco; 
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+		
+		String saida = "Nome: " + nome + ", Marca: " + marca + 
+				", Fabricante: " + fabricante + ", Validade: " + 
+				formato.format(validade) + ", Peso: " + peso + 
+				", Preço: R$" + preco;
+		
+		return saida;
 	}
 }

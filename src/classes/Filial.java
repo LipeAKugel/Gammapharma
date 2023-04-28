@@ -1,39 +1,59 @@
 package classes;
 
-public class Filial {
+import java.util.ArrayList;
+
+public class Filial extends EmpresaFarmacia {
 	
 	// Atributos.
-	private String nome;
-	private String cnpj;
 	private Endereco endereco;
+	private ArrayList<Produto> listaProdutos;
 	
 	// Construtores.
-	public Filial(String nome, String cnpj, Endereco endereco) {
-		this.nome = nome;
-		this.cnpj = cnpj;
-		this.endereco = endereco;
+	public Filial(String nome, String cnpj, Endereco end) {
+		super(nome, cnpj);
+		endereco = end;
+		listaProdutos = new ArrayList<Produto>();
 	}
 	
 	// Gets.
-	public String getNome() {
-		return nome;
-	}
-	public String getCnpj() {
-		return cnpj;
-	}
 	public Endereco getEndereco() {
 		return endereco;
 	}
 	
+	public ArrayList<Produto> getlistaProdutos() {
+		return listaProdutos;
+	}
+	
 	// Sets.
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
 	public void setEndereco(Endereco end) {
 		endereco = end;
+	}
+	
+	public void setlistaProdutos(ArrayList<Produto> lista) {
+		listaProdutos = lista;
+	}
+	
+	// Métodos.
+	public void addProduto(Produto produto) {
+		listaProdutos.add(produto);
+	}
+	
+	public void deletarProduto(Produto produto) {
+		listaProdutos.remove(produto);
+	}
+	
+	public String consultarProdutos() {
+		
+		String saida = "****** Produtos cadastrados ******\n";
+		
+		int qntd = listaProdutos.size();
+		
+		for(int i=0; i<qntd; i++) {
+			saida += "\n" + listaProdutos.get(i).getNome();
+		}
+		
+		return saida;
+		
 	}
 	
 	// toString.
