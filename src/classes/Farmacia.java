@@ -2,15 +2,17 @@ package classes;
 
 import java.util.ArrayList;
 
-public class EmpresaFarmacia {
+public class Farmacia {
 
-	protected String nome;
-	protected String cnpj;
+	private String nome;
+	private String cnpj;
+	private Endereco endereco;
 	private ArrayList<Filial> listaFiliais;
 	
-	public EmpresaFarmacia(String nome, String cnpj) {
+	public Farmacia(String nome, String cnpj, Endereco end) {
 		this.nome = nome;
 		this.cnpj = cnpj;
+		endereco = end;
 		listaFiliais = new ArrayList<Filial>();
 	}
 	

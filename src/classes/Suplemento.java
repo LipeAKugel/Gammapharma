@@ -1,5 +1,6 @@
 package classes;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Suplemento extends Produto {
@@ -56,5 +57,16 @@ public class Suplemento extends Produto {
 	}
 	public void getPrincipioAtivo(String principioAtivo) {
 		this.principioAtivo = principioAtivo;
+	}
+	
+	// toString.
+	public String toString() {
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+		
+		String saida = "Nome: " + nome + ", Marca: " + marca + ", Validade: " +
+					   formato.format(validade) + ", Preço: R$" + preco +
+					   ", Modo de Uso: " + modoUso + "Indicação: " + indicacao;
+				
+		return saida;
 	}
 }

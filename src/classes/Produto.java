@@ -34,7 +34,7 @@ public abstract class Produto {
 		return marca;
 	}
 	
-	public String getFab() {
+	public String getFabricante() {
 		return fabricante;
 	}
 	
@@ -75,15 +75,12 @@ public abstract class Produto {
 		this.preco = preco;
 	}
 	
-	// toString.
+	// toString
 	public String toString() {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
 		
-		String saida = "Nome: " + nome + ", Marca: " + marca + 
-				", Fabricante: " + fabricante + ", Validade: " + 
-				formato.format(validade) + ", Peso: " + peso + 
-				", Preço: R$" + preco;
-		
-		return saida;
+		return "Nome: " + nome + ", Marca: " + marca +
+			   "Validade: " + formato.format(validade) + "Preço: " + preco;
 	}
+	
 }

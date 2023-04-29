@@ -1,5 +1,6 @@
 package classes;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Medicamento extends Produto {
@@ -47,5 +48,16 @@ public class Medicamento extends Produto {
 	}
 	public void setEfeitosColaterais(String efeitosColaterais) {
 		this.efeitosColaterais = efeitosColaterais;
+	}
+	
+	// toString.
+	public String toString() {
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+		
+		String saida = "Nome: " + nome + ", Marca: " + marca + ", Validade: " +
+					   formato.format(validade) + ", Preço: R$" + preco +
+					   ", Modo de Uso: " + modoUso + ", Quantidade: " + quantidade;
+				
+		return saida;
 	}
 }

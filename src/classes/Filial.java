@@ -2,15 +2,18 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Filial extends EmpresaFarmacia {
+public class Filial {
 	
 	// Atributos.
+	private String nome;
+	private String cnpj;
 	private Endereco endereco;
 	private ArrayList<Produto> listaProdutos;
 	
 	// Construtores.
 	public Filial(String nome, String cnpj, Endereco end) {
-		super(nome, cnpj);
+		this.nome = nome;
+		this.cnpj = cnpj;
 		endereco = end;
 		listaProdutos = new ArrayList<Produto>();
 	}

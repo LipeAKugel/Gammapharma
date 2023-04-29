@@ -1,5 +1,6 @@
 package classes;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Cosmetico extends Produto{
@@ -42,4 +43,14 @@ public class Cosmetico extends Produto{
 		this.tipoPele = tipoPele;
 	}
 	
+	// toString.
+	public String toString() {
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+		
+		String saida = "Nome: " + nome + ", Marca: " + marca + ", Validade: " +
+					   formato.format(validade) + ", Preço: R$" + preco +
+					   ", Aplicação: " + aplicacao + "Função: " + funcao;
+				
+		return saida;
+	}
 }
