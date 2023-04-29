@@ -1,12 +1,19 @@
+package classes;
+
+import java.util.Date;
+
 public class Cosmetico extends Produto{
+	
 	//Atributos
 	private String aplicacao;
 	private String funcao;
 	private String tipoPele;
 	
 	//Construtor 
-	public Cosmetico (String aplicacao, String funcao, String tipoPele) {
-		super();
+	public Cosmetico (String nome, String marca, String fab, Date val,
+					  double peso, double preco, String aplicacao,
+					  String funcao, String tipoPele) {
+		super(nome, marca, fab, val, peso, preco);
 		this.aplicacao = aplicacao;
 		this.funcao = funcao;
 		this.tipoPele = tipoPele;

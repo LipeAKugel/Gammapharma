@@ -55,6 +55,7 @@ public class EmpresaFarmacia {
 		
 		int qntd = listaFiliais.size();
 		
+		for (int i = 0;i<qntd; i++) {
 			saida += "\n" + listaFiliais.get(i).getNome();
 		}
 		

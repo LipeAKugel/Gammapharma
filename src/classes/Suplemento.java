@@ -1,3 +1,7 @@
+package classes;
+
+import java.util.*;
+
 public class Suplemento extends Produto {
 	
 	//Atributos
@@ -8,9 +12,11 @@ public class Suplemento extends Produto {
 	private String principioAtivo;
 	
 	//Construtor
-	public Suplemento (String modoUso, String quantidade, String dosagem,
-					   String indicacao, String principioAtivo) {
-		super();
+	public Suplemento (String nome, String marca, String fab, Date val,
+					   double peso, double preco, String modoUso,
+					   String quantidade, String dosagem, String indicacao,
+					   String principioAtivo) {
+		super(nome, marca, fab, val, peso, preco);
 		this.modoUso = modoUso;
 		this.quantidade = quantidade;
 		this.dosagem = dosagem;
