@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Filial {
 	
 	// Atributos.
-	private String nome;
+	private String identificador;
 	private String cnpj;
 	private Endereco endereco;
 	private ArrayList<Produto> listaProdutos;
 	
 	// Construtores.
-	public Filial(String nome, String cnpj, Endereco end) {
-		this.nome = nome;
+	public Filial(String identificador, String cnpj, Endereco end) {
+		this.identificador = identificador;
 		this.cnpj = cnpj;
 		endereco = end;
 		listaProdutos = new ArrayList<Produto>();
@@ -27,6 +27,14 @@ public class Filial {
 		return listaProdutos;
 	}
 	
+	public String getIdentificador() {
+		return identificador;
+	}
+	
+	public String getCnpj() {
+		return cnpj;
+	}
+	
 	// Sets.
 	public void setEndereco(Endereco end) {
 		endereco = end;
@@ -34,6 +42,14 @@ public class Filial {
 	
 	public void setlistaProdutos(ArrayList<Produto> lista) {
 		listaProdutos = lista;
+	}
+	
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+	
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
 	}
 	
 	// Métodos.
@@ -61,6 +77,6 @@ public class Filial {
 	
 	// toString.
 	public String toString() {
-		return "Nome: " + nome + ", CNPJ: " + cnpj + ", Cidade: " + endereco.getCidade();
+		return "Nome: " + identificador + ", CNPJ: " + cnpj + ", Cidade: " + endereco.getCidade();
 	}
 }

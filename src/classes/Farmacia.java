@@ -8,12 +8,14 @@ public class Farmacia {
 	private String cnpj;
 	private Endereco endereco;
 	private ArrayList<Filial> listaFiliais;
+	private ArrayList<Produto> listaProdutos;
 	
 	public Farmacia(String nome, String cnpj, Endereco end) {
 		this.nome = nome;
 		this.cnpj = cnpj;
 		endereco = end;
 		listaFiliais = new ArrayList<Filial>();
+		listaProdutos = new ArrayList<Produto>();
 	}
 	
 	// Gets.
@@ -29,6 +31,10 @@ public class Farmacia {
 		return listaFiliais;
 	}
 	
+	public ArrayList<Produto> getListaProdutos(){
+		return listaProdutos;
+	}
+	
 	// Sets.
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -42,6 +48,10 @@ public class Farmacia {
 		listaFiliais = lista;
 	}
 	
+	public void setListaProdutos(ArrayList<Produto> produto) {
+		listaProdutos = produto;
+	}
+	
 	// Métodos.
 	public void addFilial(Filial filial) {
 		listaFiliais.add(filial);
@@ -51,6 +61,14 @@ public class Farmacia {
 		listaFiliais.remove(filial);
 	}
 	
+	public void addProduto(Produto produto) {
+		listaProdutos.add(produto);
+	}
+	
+	public void deletarProduto(Produto produto) {
+		listaProdutos.remove(produto);
+	}
+	//Consultar filiais
 	public String consultarFiliais() {
 		
 		String saida = "****** Filiais cadastradas ******\n";
@@ -58,11 +76,22 @@ public class Farmacia {
 		int qntd = listaFiliais.size();
 		
 		for (int i = 0;i<qntd; i++) {
-			saida += "\n" + listaFiliais.get(i).getNome();
+			saida += "\n" + listaFiliais.get(i).getIdentificador();
 		}
 		
 		return saida;
 		
+	}
+	//Consultar produtos
+	public String consultarProdutos() {
+
+		String saida = "****** Produtos cadastrados ******\n";
+		
+		int qntd = listaProdutos.size();
+		for ( int i = 0; i<qntd; i++) {
+			saida += "\n" + listaProdutos.get(i).getNome();
+		}
+		return saida;
 	}
 	
 	// toString.
