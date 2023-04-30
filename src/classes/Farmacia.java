@@ -18,36 +18,36 @@ public class Farmacia {
 		listaProdutos = new ArrayList<Produto>();
 	}
 	
-	// Gets.
+	// Gets
 	public String getNome() {
 		return nome;
 	}
-	
 	public String getCnpj() {
 		return cnpj;
 	}
-	
+	public Endereco getEndereco() {
+		return endereco;
+	}
 	public ArrayList<Filial> getlistaFiliais() {
 		return listaFiliais;
 	}
-	
 	public ArrayList<Produto> getListaProdutos(){
 		return listaProdutos;
 	}
 	
-	// Sets.
+	// Sets
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	
+	public void setEndereco(Endereco end) {
+		endereco = end;
+	}
 	public void setlistaFiliais(ArrayList<Filial> lista) {
 		listaFiliais = lista;
 	}
-	
 	public void setListaProdutos(ArrayList<Produto> produto) {
 		listaProdutos = produto;
 	}
@@ -68,8 +68,9 @@ public class Farmacia {
 	public void deletarProduto(Produto produto) {
 		listaProdutos.remove(produto);
 	}
-	//Consultar filiais
+	
 	public String consultarFiliais() {
+		// Retorna uma string com o nome de todas as filiais cadastradas.
 		
 		String saida = "****** Filiais cadastradas ******\n";
 		
@@ -82,8 +83,9 @@ public class Farmacia {
 		return saida;
 		
 	}
-	//Consultar produtos
+	
 	public String consultarProdutos() {
+		// Retorna uma string com o nome de todos os produtos cadastrados.
 
 		String saida = "****** Produtos cadastrados ******\n";
 		
@@ -91,7 +93,28 @@ public class Farmacia {
 		for ( int i = 0; i<qntd; i++) {
 			saida += "\n" + listaProdutos.get(i).getNome();
 		}
+		
 		return saida;
+	}
+
+	public ArrayList<Produto> produtosCadastrados() {
+		// Retorna uma lista com todos os produtos cadastrados em
+		// todas as filiais.
+		
+		ArrayList<Produto> produtosCadastrados = new ArrayList<Produto>();
+		produtosCadastrados.addAll(listaProdutos);
+		
+		int qntdFiliais = listaFiliais.size();
+		
+		// Loope por todas as filiais cadastradas.
+		for (int i = 0; i<qntdFiliais; i++) {
+			Filial filial = listaFiliais.get(i);
+			
+			// Adicione todos os produtos dessa filial à lista.
+			produtosCadastrados.addAll(filial.getlistaProdutos());
+		}
+		
+		return produtosCadastrados;
 	}
 	
 	// toString.

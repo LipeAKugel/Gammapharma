@@ -20,7 +20,6 @@ public class Cosmetico extends Produto{
 		this.tipoPele = tipoPele;
 	}
 	
-	//Metodos
 	//Gets
 	public String getAplicacao() {
 		return aplicacao;
@@ -49,7 +48,7 @@ public class Cosmetico extends Produto{
 		
 		String saida = "Nome: " + nome + ", Marca: " + marca + ", Validade: " +
 					   formato.format(validade) + ", Preço: R$" + preco +
-					   ", Aplicação: " + aplicacao + "Função: " + funcao;
+					   ", Aplicação: " + aplicacao + ", Função: " + funcao;
 				
 		return saida;
 	}

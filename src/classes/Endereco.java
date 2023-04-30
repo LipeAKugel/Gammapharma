@@ -2,14 +2,14 @@ package classes;
 
 public class Endereco {
 	
-	// Atributos. (perguntar sobre logradouro)
+	// Atributos
 	private String logradouro;
 	private String complemento;
 	private String cep;
 	private String cidade;
 	private String estado;
 	
-	// Construtores.
+	// Construtor
 	public Endereco(String lograd, String comp, String cep,
 				    String cidade, String estado) {
 		logradouro = lograd;
@@ -19,7 +19,7 @@ public class Endereco {
 		this.estado = estado;
 	}
 	
-	// Gets.
+	// Gets
 	public String getLograd() {
 		return logradouro;
 	}
@@ -36,7 +36,7 @@ public class Endereco {
 		return estado;
 	}
 	
-	// Sets.
+	// Sets
 	public void setLograd(String lograd) {
 		logradouro = lograd;
 	}
@@ -53,7 +53,7 @@ public class Endereco {
 		this.estado = estado;
 	}
 	
-	// toString.
+	// toString
 	public String toString() {
 		String saida;
 		/*

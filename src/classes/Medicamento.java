@@ -13,8 +13,8 @@ public class Medicamento extends Produto {
 	
 	//Construtor
 	public Medicamento(String nome, String marca, String fab, Date val, double peso,
-			           double preco, String efeitosColaterais, String dosagem, 
-			           String quantidade, String modoUso) {
+			           double preco, String modoUso, String quantidade, 
+			           String dosagem, String efeitosColaterais) {
 		super(nome, marca, fab, val, peso, preco);
 		this.modoUso = modoUso;
 		this.quantidade = quantidade;

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Filial {
 	
-	// Atributos.
+	// Atributos
 	private String identificador;
 	private String cnpj;
 	private Endereco endereco;
 	private ArrayList<Produto> listaProdutos;
 	
-	// Construtores.
+	// Construtores
 	public Filial(String identificador, String cnpj, Endereco end) {
 		this.identificador = identificador;
 		this.cnpj = cnpj;
@@ -18,41 +18,35 @@ public class Filial {
 		listaProdutos = new ArrayList<Produto>();
 	}
 	
-	// Gets.
+	// Gets
+	public String getIdentificador() {
+		return identificador;
+	}
+	public String getCnpj() {
+		return cnpj;
+	}
 	public Endereco getEndereco() {
 		return endereco;
 	}
-	
 	public ArrayList<Produto> getlistaProdutos() {
 		return listaProdutos;
 	}
 	
-	public String getIdentificador() {
-		return identificador;
+	// Sets
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
 	}
-	
-	public String getCnpj() {
-		return cnpj;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
-	
-	// Sets.
 	public void setEndereco(Endereco end) {
 		endereco = end;
 	}
-	
 	public void setlistaProdutos(ArrayList<Produto> lista) {
 		listaProdutos = lista;
 	}
 	
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-	
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
-	}
-	
-	// Métodos.
+	// Métodos
 	public void addProduto(Produto produto) {
 		listaProdutos.add(produto);
 	}
@@ -62,6 +56,7 @@ public class Filial {
 	}
 	
 	public String consultarProdutos() {
+		// Retorna uma string com o nome de todos os produtos cadastrados.
 		
 		String saida = "****** Produtos cadastrados ******\n";
 		
@@ -75,8 +70,9 @@ public class Filial {
 		
 	}
 	
-	// toString.
+	// toString
 	public String toString() {
-		return "Nome: " + identificador + ", CNPJ: " + cnpj + ", Cidade: " + endereco.getCidade();
+		return "Nome: " + identificador + ", CNPJ: " + cnpj +
+			   ", Cidade: " + endereco.getCidade();
 	}
 }

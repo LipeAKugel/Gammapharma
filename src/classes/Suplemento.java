@@ -65,7 +65,7 @@ public class Suplemento extends Produto {
 		
 		String saida = "Nome: " + nome + ", Marca: " + marca + ", Validade: " +
 					   formato.format(validade) + ", Preço: R$" + preco +
-					   ", Modo de Uso: " + modoUso + "Indicação: " + indicacao;
+					   ", Modo de Uso: " + modoUso + ", Indicação: " + indicacao;
 				
 		return saida;
 	}
