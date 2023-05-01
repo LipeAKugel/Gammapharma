@@ -48,8 +48,8 @@ public class Farmacia {
 	public void setlistaFiliais(ArrayList<Filial> lista) {
 		listaFiliais = lista;
 	}
-	public void setListaProdutos(ArrayList<Produto> produto) {
-		listaProdutos = produto;
+	public void setListaProdutos(ArrayList<Produto> lista) {
+		listaProdutos = lista;
 	}
 	
 	// Métodos.

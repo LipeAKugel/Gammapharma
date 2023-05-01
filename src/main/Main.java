@@ -50,6 +50,7 @@ public class Main {
 		Produto produto_4 = new Cosmetico("Protetor Solar","Darrow","Pierre Fabre",val_4,0.0770,72.99,
 										  "Pele","Proteção solar", "Qualquer");
 		
+		
 		// Adicionando as filiais à farmácia central.
 		farmacia.addFilial(filial_1);
 		farmacia.addFilial(filial_2);
