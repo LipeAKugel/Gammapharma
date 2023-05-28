@@ -55,21 +55,6 @@ public class Filial {
 		listaProdutos.remove(produto);
 	}
 	
-	public String consultarProdutos() {
-		// Retorna uma string com o nome de todos os produtos cadastrados.
-		
-		String saida = "****** Produtos cadastrados ******\n";
-		
-		int qntd = listaProdutos.size();
-		
-		for(int i=0; i<qntd; i++) {
-			saida += "\n" + listaProdutos.get(i).getNome();
-		}
-		
-		return saida;
-		
-	}
-	
 	// toString
 	public String toString() {
 		return "Nome: " + identificador + ", CNPJ: " + cnpj +

@@ -4,18 +4,15 @@ import java.util.ArrayList;
 
 public class Farmacia {
 
+	// Atributos.
 	private String nome;
 	private String cnpj;
-	private Endereco endereco;
 	private ArrayList<Filial> listaFiliais;
-	private ArrayList<Produto> listaProdutos;
 	
-	public Farmacia(String nome, String cnpj, Endereco end) {
+	public Farmacia(String nome, String cnpj) {
 		this.nome = nome;
 		this.cnpj = cnpj;
-		endereco = end;
 		listaFiliais = new ArrayList<Filial>();
-		listaProdutos = new ArrayList<Produto>();
 	}
 	
 	// Gets
@@ -25,14 +22,8 @@ public class Farmacia {
 	public String getCnpj() {
 		return cnpj;
 	}
-	public Endereco getEndereco() {
-		return endereco;
-	}
 	public ArrayList<Filial> getlistaFiliais() {
 		return listaFiliais;
-	}
-	public ArrayList<Produto> getListaProdutos(){
-		return listaProdutos;
 	}
 	
 	// Sets
@@ -42,14 +33,8 @@ public class Farmacia {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	public void setEndereco(Endereco end) {
-		endereco = end;
-	}
 	public void setlistaFiliais(ArrayList<Filial> lista) {
 		listaFiliais = lista;
-	}
-	public void setListaProdutos(ArrayList<Produto> lista) {
-		listaProdutos = lista;
 	}
 	
 	// Métodos.
@@ -61,60 +46,52 @@ public class Farmacia {
 		listaFiliais.remove(filial);
 	}
 	
-	public void addProduto(Produto produto) {
-		listaProdutos.add(produto);
-	}
-	
-	public void deletarProduto(Produto produto) {
-		listaProdutos.remove(produto);
-	}
-	
-	public String consultarFiliais() {
-		// Retorna uma string com o nome de todas as filiais cadastradas.
+	public ArrayList<Filial> consultarFiliais(String cidade) {
+		// Retorna uma lista com todas as filiais de uma determinada cidade.
 		
-		String saida = "****** Filiais cadastradas ******\n";
+		ArrayList<Filial> lista = new ArrayList<Filial>();
 		
-		int qntd = listaFiliais.size();
-		
-		for (int i = 0;i<qntd; i++) {
-			saida += "\n" + listaFiliais.get(i).getIdentificador();
+		// Loope por todas as filiais cadastradas.
+		for (Filial filial : listaFiliais) {
+			String filialCidade = filial.getEndereco().getCidade();
+			
+			// Se a cidade coincidir, adicione essa filial a lista.
+			if (filialCidade.equals(cidade)) {
+				lista.add(filial);
+			}
 		}
 		
-		return saida;
-		
-	}
-	
-	public String consultarProdutos() {
-		// Retorna uma string com o nome de todos os produtos cadastrados.
-
-		String saida = "****** Produtos cadastrados ******\n";
-		
-		int qntd = listaProdutos.size();
-		for ( int i = 0; i<qntd; i++) {
-			saida += "\n" + listaProdutos.get(i).getNome();
-		}
-		
-		return saida;
+		return lista;
 	}
 
 	public ArrayList<Produto> produtosCadastrados() {
-		// Retorna uma lista com todos os produtos cadastrados em
-		// todas as filiais.
+		// Retorna uma lista com todos os produtos cadastrados em todas as filiais.
 		
 		ArrayList<Produto> produtosCadastrados = new ArrayList<Produto>();
-		produtosCadastrados.addAll(listaProdutos);
-		
-		int qntdFiliais = listaFiliais.size();
 		
 		// Loope por todas as filiais cadastradas.
-		for (int i = 0; i<qntdFiliais; i++) {
-			Filial filial = listaFiliais.get(i);
-			
+		for (Filial filial : listaFiliais) {
 			// Adicione todos os produtos dessa filial à lista.
 			produtosCadastrados.addAll(filial.getlistaProdutos());
 		}
 		
 		return produtosCadastrados;
+	}
+	
+	public ArrayList<Produto> buscarProdutos (String nome) {
+		// Retorna uma lista com todos os produtos com certo nome.
+		
+		ArrayList<Produto> lista = new ArrayList<Produto>();
+		
+		for (Filial filial : listaFiliais) {
+			for (Produto produto : filial.getlistaProdutos())  {
+				if (produto.getNome().equals(nome)) {
+					lista.add(produto);
+				}
+			}
+		}
+		
+		return lista;
 	}
 	
 	// toString.
