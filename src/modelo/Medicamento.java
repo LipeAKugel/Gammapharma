@@ -1,31 +1,28 @@
-package classes;
+package modelo;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 
-public class Suplemento extends Produto {
+public class Medicamento extends Produto {
 	
 	//Atributos
 	private String modoUso;
 	private String quantidade;
 	private String dosagem;
-	private String indicacao;
-	private String principioAtivo;
+	private String efeitosColaterais;
 	
 	//Construtor
-	public Suplemento (String nome, String marca, String fab, Date val,
-					   double peso, double preco, String modoUso,
-					   String quantidade, String dosagem, String indicacao,
-					   String principioAtivo) {
+	public Medicamento(String nome, String marca, String fab, Date val, double peso,
+			           double preco, String modoUso, String quantidade, 
+			           String dosagem, String efeitosColaterais) {
 		super(nome, marca, fab, val, peso, preco);
 		this.modoUso = modoUso;
 		this.quantidade = quantidade;
 		this.dosagem = dosagem;
-		this.indicacao = indicacao;
-		this.principioAtivo = principioAtivo;
+		this.efeitosColaterais = efeitosColaterais;
 	}
-	//Metodos
-	//gets
+	
+	//Gets
 	public String getModoUso() {
 		return modoUso;
 	}
@@ -35,14 +32,11 @@ public class Suplemento extends Produto {
 	public String getDosagem() {
 		return dosagem;
 	}
-	public String getIndicacao() {
-		return indicacao;
-	}
-	public String getPrincipioAtivo() {
-		return principioAtivo;
+	public String getEfeitosColaterais() {
+		return efeitosColaterais;
 	}
 	
-	//sets
+	//Sets
 	public void setModoUso(String modoUso) {
 		this.modoUso = modoUso;
 	}
@@ -52,11 +46,8 @@ public class Suplemento extends Produto {
 	public void setDosagem(String dosagem) {
 		this.dosagem = dosagem;
 	}
-	public void getIndicacao(String indicacao) {
-		this.indicacao = indicacao;
-	}
-	public void getPrincipioAtivo(String principioAtivo) {
-		this.principioAtivo = principioAtivo;
+	public void setEfeitosColaterais(String efeitosColaterais) {
+		this.efeitosColaterais = efeitosColaterais;
 	}
 	
 	// toString.
@@ -65,7 +56,7 @@ public class Suplemento extends Produto {
 		
 		String saida = "Nome: " + nome + ", Marca: " + marca + ", Validade: " +
 					   formato.format(validade) + ", Preço: R$" + preco +
-					   ", Modo de Uso: " + modoUso + ", Indicação: " + indicacao;
+					   ", Modo de Uso: " + modoUso + ", Quantidade: " + quantidade;
 				
 		return saida;
 	}
