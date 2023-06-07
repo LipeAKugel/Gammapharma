@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import controle.ControleFarmacia;
+
 public class TelaMenu implements ActionListener {
 	
 	// Crie o container JFrame.
@@ -13,6 +15,7 @@ public class TelaMenu implements ActionListener {
 	private static JButton buscaFilial = new JButton("Buscar Filial");
 	private static JButton editarProduto = new JButton("Editar Produto");
 	private static JButton editarFilial = new JButton("Editar Filial");
+	private static ControleFarmacia dados = new ControleFarmacia();
 	
 	public TelaMenu() {
 		
@@ -53,13 +56,13 @@ public class TelaMenu implements ActionListener {
 		Object src = e.getSource();
 		
 		if (src == buscaProd)
-			new TelaBusca().telaBusca(1);
+			new TelaBusca(1,dados);
 		if (src == buscaFilial)
-			new TelaBusca().telaBusca(2);
+			new TelaBusca(2,dados);
 		if (src == editarProduto)
-			new TelaEditar().mostrarDados(1);
+			new TelaEditar().mostrarDados(1,dados);
 		if (src == editarFilial)
-			new TelaEditar().mostrarDados(2);
+			new TelaEditar().mostrarDados(2,dados);
 	}
 	
 	public static void main(String args[]) {

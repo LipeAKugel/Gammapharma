@@ -1,10 +1,15 @@
 package view;
 
+import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.*;
 
+import controle.ControleFarmacia;
+
 public class TelaEditar implements ActionListener {
 	private JFrame janela;
+	private ControleFarmacia dados;
+	private JLabel titulo;
 	private JList<String> listaAmbos;
 	private static JButton cadastrarP;
 	private static JButton cadastrarF;
@@ -12,13 +17,14 @@ public class TelaEditar implements ActionListener {
 	private String[] nomes_p = {"Paracetamol", "Dipirona", "Soro Fisiológico"};
 	private String[] nomes_f = {"Gamma Pharma Recanto", "Gamma Pharma Tagua", "Gamma Pharma Samambaia"};
 
-	public void mostrarDados(int op) {
+	public void mostrarDados(int op, ControleFarmacia dados) {
+		this.dados = dados;
 		
 		// Dimensões da janela.
 		int j_comp = 500;
 		int j_larg = 500;
 		int l_comp = 420;
-		int l_larg = 350;
+		int l_larg = 310;
 		
 		
 		switch (op) {
@@ -26,11 +32,16 @@ public class TelaEditar implements ActionListener {
 				janela = new JFrame("Editar Produtos");
 				janela.setSize(j_comp, j_larg);
 				
+				// Label.
+				titulo = new JLabel("Produtos Cadastrados");
+				titulo.setFont(new Font("Arial", Font.BOLD, 30));
+				titulo.setBounds(75, 20, 400, 40);
+				janela.add(titulo);
 				
 				//Lista os produtos
 				listaAmbos = new JList<String>(nomes_p);
 				janela.add(listaAmbos);
-				listaAmbos.setBounds(30, 50, l_comp, l_larg);
+				listaAmbos.setBounds(30, 70, l_comp, l_larg);
 				
 				//Botões	
 				cadastrarP = new JButton("Cadastrar");
@@ -50,9 +61,15 @@ public class TelaEditar implements ActionListener {
 				janela = new JFrame("Editar Filiais");
 				janela.setSize(j_comp, j_larg);
 				
+				// Label.
+				titulo = new JLabel("Filiais Cadastradas");
+				titulo.setFont(new Font("Arial", Font.BOLD, 30));
+				titulo.setBounds(100, 20, 400, 40);
+				janela.add(titulo);
+				
 				//Lista as filiais
 				listaAmbos = new JList<String>(nomes_f);
-				listaAmbos.setBounds(30, 50, l_comp, l_larg);
+				listaAmbos.setBounds(30, 70, l_comp, l_larg);
 				janela.add(listaAmbos);
 				
 				//Botões
@@ -76,8 +93,8 @@ public class TelaEditar implements ActionListener {
 		Object src = e.getSource();
 		//Escolhe qual tela ir.
 		if(src == cadastrarP) 
-			new TelaDetalhe(1);
+			new TelaDetalhe(1,dados);
 		if(src == cadastrarF) 
-			new TelaDetalhe(2);
+			new TelaDetalhe(2,dados);
 	}
 }

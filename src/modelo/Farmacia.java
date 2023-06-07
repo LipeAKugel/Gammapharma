@@ -1,6 +1,9 @@
 package modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Farmacia {
 
@@ -46,7 +49,7 @@ public class Farmacia {
 		listaFiliais.remove(filial);
 	}
 	
-	public ArrayList<Filial> consultarFiliais(String cidade) {
+	public ArrayList<Filial> buscarFiliais(String cidade) {
 		// Retorna uma lista com todas as filiais de uma determinada cidade.
 		
 		ArrayList<Filial> lista = new ArrayList<Filial>();
@@ -56,7 +59,7 @@ public class Farmacia {
 			String filialCidade = filial.getEndereco().getCidade();
 			
 			// Se a cidade coincidir, adicione essa filial a lista.
-			if (filialCidade.equals(cidade)) {
+			if (filialCidade.toLowerCase().equals(cidade.toLowerCase())) {
 				lista.add(filial);
 			}
 		}
@@ -78,14 +81,14 @@ public class Farmacia {
 		return produtosCadastrados;
 	}
 	
-	public ArrayList<Produto> buscarProdutos (String nome) {
+	public ArrayList<Produto> buscarProdutos(String nome) {
 		// Retorna uma lista com todos os produtos com certo nome.
 		
 		ArrayList<Produto> lista = new ArrayList<Produto>();
 		
 		for (Filial filial : listaFiliais) {
 			for (Produto produto : filial.getlistaProdutos())  {
-				if (produto.getNome().equals(nome)) {
+				if (produto.getNome().toLowerCase().equals(nome.toLowerCase())) {
 					lista.add(produto);
 				}
 			}
@@ -94,9 +97,39 @@ public class Farmacia {
 		return lista;
 	}
 	
+	public void fillWithSomeData() {
+		// Preencha com alguns dados.
+		
+		Endereco end01 = new Endereco("quadra 01","","123456","recanto","df");
+		
+		Filial filial01 = new Filial("Gammapharma Recanto","12345678",end01);
+		
+		Date data01 = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			data01 = format.parse("20/12/2022");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Produto prod01 = new Medicamento("Paracetamol","","",data01,
+										 1.0,5.0,"","","","");
+		Produto prod02 = new Medicamento("Dipirona","","",data01,
+				 1.0,5.0,"","","","");
+		Produto prod03 = new Medicamento("Soro Fisiológico","","",data01,
+				 1.0,5.0,"","","","");
+		
+		filial01.addProduto(prod01);
+		filial01.addProduto(prod02);
+		filial01.addProduto(prod03);
+		
+		this.addFilial(filial01);
+	}
+	
 	// toString.
 	public String toString() {
 		return "Nome: " + nome + ", Cnpj: " + cnpj +
 			   ", Num de filiais:" + listaFiliais.size();
 	}
+	
 }
