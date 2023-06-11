@@ -38,4 +38,21 @@ public class ControleFilial {
 		
 		return nomes;
 	}
+
+	public int acharFilial(Produto produto) {
+		// Acha a posição de uma filial correspondente de um produto.
+		int pos = 0;
+		
+		loop: for (Filial f : filiais) {
+			for (Produto p : f.getlistaProdutos()) {
+				if (produto.equals(p)) {
+					// Quebre o loop inteiro.
+					break loop;
+				}
+			}
+			pos++;
+		}
+		
+		return pos;
+	}
 }

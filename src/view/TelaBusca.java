@@ -10,6 +10,7 @@ import controle.ControleProduto;
 
 public class TelaBusca implements ActionListener {
 	private JFrame janela;
+	private static ControleFarmacia dados;
 	private JLabel titulo;
 	private JLabel labelBusca;
 	private JTextField busca;
@@ -20,7 +21,6 @@ public class TelaBusca implements ActionListener {
 	private JList<String> listaFiliais;
 	private String[] nomes_p = new String[50];
 	private String[] nomes_f = new String[50];
-	private static ControleFarmacia dados;
 	
 	public TelaBusca(int op, ControleFarmacia dados) {
 		this.dados = dados;

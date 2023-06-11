@@ -5,7 +5,7 @@ import modelo.*;
 public class ControleProduto {
 	
 	private Produto[] produtos;
-	private ControleFarmacia dados;
+	private ControleFarmacia dados; // (PERGUNTAR)
 	
 	public ControleProduto(ControleFarmacia dados) {
 		this.dados = dados;
