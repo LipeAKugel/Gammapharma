@@ -9,12 +9,14 @@ import modelo.*;
 
 public class TelaDetalhe implements ActionListener{
 	
-	private JFrame janela;
 	private ControleFarmacia dados;
+	private String[] dadosAtuais;
+	private String[] dadosNovos;
+	private JFrame janela;
 	private JButton salvar;
 	private JButton remover;
 	
-	//Variaveis Produto.
+	//Variaveis produto.
 	String[] filiais;
 	private JComboBox<String> filial;
 	private JLabel lfilial;
@@ -34,7 +36,7 @@ public class TelaDetalhe implements ActionListener{
 	private JComboBox<String> categoria;
 	private JLabel lcategoria;
 	
-	// Variáveis Produtos categoria.
+	// Variáveis produtos específicos de categorias.
 	private JLabel lmodoUso;
 	private JTextField modoUso;
 	private JLabel lquantidade;
@@ -54,7 +56,7 @@ public class TelaDetalhe implements ActionListener{
 	private JLabel ltipoPele;
 	private JTextField tipoPele;
 	
-	//Variaveis Filiais
+	//Variaveis filiais.
 	private JLabel liden;
 	private JTextField iden;
 	private JLabel llogra;
@@ -115,72 +117,8 @@ public class TelaDetalhe implements ActionListener{
 			remover.setBounds(190, 416, 110, 30);
 			janela.add(remover);
 			
-			// Carregue e preencha os dados. //(PERGUNTAR).
-			Produto prod = dados.getProdutos()[pos];
-			
-			filial.setSelectedIndex(new ControleFilial(dados).acharFilial(prod));
-			
-			if (prod instanceof Medicamento) {
-				// Preenche os atributos do medicamento.
-				Medicamento med = (Medicamento) prod;
-				opcaoMedicamento();
-				
-				nome.setText(med.getNome());
-				fabri.setText(med.getFabricante());
-				peso.setText(String.valueOf(med.getPeso()));
-				preco.setText(String.valueOf(med.getPreco()));
-				marca.setText(med.getMarca());
-				categoria.setSelectedIndex(0);
-				modoUso.setText(med.getModoUso());
-				quantidade.setText(med.getQuantidade());
-				dosagem.setText(med.getDosagem());
-				efeitos.setText(med.getEfeitosColaterais());
-				
-				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				vali.setText(formato.format(med.getValidade()));
-				
-			} else if (prod instanceof Suplemento) {
-				// Preenche os atributos do suplemento.
-				Suplemento sup = (Suplemento) prod;
-				opcaoSuplemento();
-				
-				nome.setText(sup.getNome());
-				fabri.setText(sup.getFabricante());
-				peso.setText(String.valueOf(sup.getPeso()));
-				preco.setText(String.valueOf(sup.getPreco()));
-				marca.setText(sup.getMarca());
-				categoria.setSelectedIndex(0);
-				modoUso.setText(sup.getModoUso());
-				quantidade.setText(sup.getQuantidade());
-				dosagem.setText(sup.getDosagem());
-				indicacao.setText(sup.getIndicacao());
-				principio.setText(sup.getPrincipioAtivo());
-				
-				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				vali.setText(formato.format(sup.getValidade()));
-				
-			} else if (prod instanceof Cosmetico) {
-				// Preenche os atributos do cosmético.
-				Cosmetico cosm = (Cosmetico) prod;
-				opcaoCosmetico();
-				
-				nome.setText(cosm.getNome());
-				fabri.setText(cosm.getFabricante());
-				peso.setText(String.valueOf(cosm.getPeso()));
-				preco.setText(String.valueOf(cosm.getPreco()));
-				marca.setText(cosm.getMarca());
-				categoria.setSelectedIndex(0);
-				aplicacao.setText(cosm.getAplicacao());
-				funcao.setText(cosm.getFuncao());
-				tipoPele.setText(cosm.getTipoPele());
-				
-				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				vali.setText(formato.format(cosm.getValidade()));
-				
-			} else {
-				JOptionPane.showMessageDialog(null,"Dados não encontrados!", null, 
-											  JOptionPane.ERROR_MESSAGE);
-			}
+			// Carregue e preencha os dados.
+			preencherProduto(pos);
 			
 		break;
 		
@@ -193,23 +131,15 @@ public class TelaDetalhe implements ActionListener{
 			remover.setBounds(190, 416, 110, 30);
 			janela.add(remover);
 			
-			// Carregue e preencha os dados. //(PERGUNTAR).
-			Filial filial = dados.getFiliais()[pos];
-			
-			iden.setText(filial.getIdentificador());
-			logra.setText(filial.getEndereco().getLograd());
-			cep.setText(filial.getEndereco().getCep());
-			cnpj.setText(filial.getCnpj());
-			estado.setText(filial.getEndereco().getEstado());
-			cidade.setText(filial.getEndereco().getCidade());
-			compl.setText(filial.getEndereco().getComp());
+			// Carregue e preencha os dados.
+			preencherFilial(pos);
 			
 		break;
 		}
 		
 	}
 	
-	
+	// Métodos.
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		String categ = (String) categoria.getSelectedItem();
@@ -228,10 +158,6 @@ public class TelaDetalhe implements ActionListener{
 		}
 	}
 	
-	
-	
-	
-	//(PERGUNTAR).
 	public void construirTelaProd() {
 		// Constrói a tela de produto.
 		
@@ -362,7 +288,6 @@ public class TelaDetalhe implements ActionListener{
 		
 	}
 	
-	
 	public void construirTelaFilial() {
 		// Constrói a tela de filial.
 		
@@ -425,7 +350,6 @@ public class TelaDetalhe implements ActionListener{
 		
 	}
 	
-	
 	public void opcaoMedicamento() {
 		// Torna os atributos de um medicamento visíveis.
 		lmodoUso.setVisible(true);
@@ -449,7 +373,6 @@ public class TelaDetalhe implements ActionListener{
 		tipoPele.setVisible(false);
 	}
 
-	
 	public void opcaoSuplemento() {
 		// Torna os atributos de um suplemento visíveis.
 		lmodoUso.setVisible(true);
@@ -494,5 +417,79 @@ public class TelaDetalhe implements ActionListener{
 		aplicacao.setVisible(true);
 		funcao.setVisible(true);
 		tipoPele.setVisible(true);
+	}
+
+	public void preencherProduto(int pos) {
+		// Preenche os dados de um produto nos TextFields.
+		dadosAtuais = new ControleProduto(dados).getDadosProduto(pos);
+		
+		categoria.setSelectedIndex(Integer.parseInt(dadosAtuais[0]));
+		filial.setSelectedIndex(Integer.parseInt(dadosAtuais[1]));
+		
+		switch (categoria.getSelectedIndex()) {
+			case 0:
+				// Preenche os atributos do medicamento.
+				opcaoMedicamento();
+				
+				nome.setText(dadosAtuais[2]);
+				fabri.setText(dadosAtuais[3]);
+				peso.setText(dadosAtuais[4]);
+				preco.setText(dadosAtuais[5]);
+				marca.setText(dadosAtuais[6]);
+				vali.setText(dadosAtuais[7]);
+				modoUso.setText(dadosAtuais[8]);
+				quantidade.setText(dadosAtuais[9]);
+				dosagem.setText(dadosAtuais[10]);
+				efeitos.setText(dadosAtuais[11]);
+				
+			break;
+			
+			case 1:
+				// Preenche os atributos do suplemento.
+				opcaoSuplemento();
+				
+				nome.setText(dadosAtuais[2]);
+				fabri.setText(dadosAtuais[3]);
+				peso.setText(dadosAtuais[4]);
+				preco.setText(dadosAtuais[5]);
+				marca.setText(dadosAtuais[6]);
+				vali.setText(dadosAtuais[7]);
+				modoUso.setText(dadosAtuais[8]);
+				quantidade.setText(dadosAtuais[9]);
+				dosagem.setText(dadosAtuais[10]);
+				indicacao.setText(dadosAtuais[11]);
+				principio.setText(dadosAtuais[12]);
+				
+			break;
+			
+			case 2:
+				// Preenche os atributos do cosmético.
+				opcaoCosmetico();
+				
+				nome.setText(dadosAtuais[2]);
+				fabri.setText(dadosAtuais[3]);
+				peso.setText(dadosAtuais[4]);
+				preco.setText(dadosAtuais[5]);
+				marca.setText(dadosAtuais[6]);
+				vali.setText(dadosAtuais[7]);
+				aplicacao.setText(dadosAtuais[8]);
+				funcao.setText(dadosAtuais[9]);
+				tipoPele.setText(dadosAtuais[10]);
+				
+			break;
+		}
+	}
+	
+	public void preencherFilial(int pos) {
+		// Preenche os dados de uma filial no TextField.
+		dadosAtuais = new ControleFilial(dados).getDadosFilial(pos);
+		
+		iden.setText(dadosAtuais[0]);
+		logra.setText(dadosAtuais[1]);
+		cep.setText(dadosAtuais[2]);
+		cnpj.setText(dadosAtuais[3]);
+		estado.setText(dadosAtuais[4]);
+		cidade.setText(dadosAtuais[5]);
+		compl.setText(dadosAtuais[6]);
 	}
 }

@@ -55,4 +55,22 @@ public class ControleFilial {
 		
 		return pos;
 	}
+
+	public String[] getDadosFilial(int pos) {
+		// Retorna os dados de uma filial em uma certa posição.
+		
+		Filial filial = filiais[pos];
+		String[] filialDados = new String[7];
+		
+		// Preencha os dados da filial.
+		filialDados[0] = filial.getIdentificador();
+		filialDados[1] = filial.getEndereco().getLograd();
+		filialDados[2] = filial.getEndereco().getCep();
+		filialDados[3] = filial.getCnpj();
+		filialDados[4] = filial.getEndereco().getEstado();
+		filialDados[5] = filial.getEndereco().getCidade();
+		filialDados[6] = filial.getEndereco().getComp();
+		
+		return filialDados;
+	}
 }
