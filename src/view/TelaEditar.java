@@ -11,10 +11,12 @@ import controle.ControleProduto;
 public class TelaEditar implements ActionListener {
 	private JFrame janela;
 	private ControleFarmacia dados;
+	private int op;
 	private JLabel titulo;
 	private JList<String> listaAmbos;
 	private static JButton cadastrarP;
 	private static JButton cadastrarF;
+	private static JButton refresh;
 	private JButton editarP;
 	private JButton editarF;
 	private String[] nomes_p = new String[50];
@@ -22,6 +24,7 @@ public class TelaEditar implements ActionListener {
 
 	public void mostrarDados(int op, ControleFarmacia dados) {
 		this.dados = dados;
+		this.op = op;
 		
 		// Dimensões da janela.
 		int j_comp = 500;
@@ -29,11 +32,19 @@ public class TelaEditar implements ActionListener {
 		int l_comp = 420;
 		int l_larg = 310;
 		
+		// Janela.
+		janela = new JFrame();
+		janela.setSize(j_comp, j_larg);
+		
+		// JButtons.
+		refresh = new JButton("Atualizar");
+		refresh.setBounds(340, 410, 110, 30);
+		janela.add(refresh);
+		refresh.addActionListener(this);
 		
 		switch (op) {
 			case 1: // Edição de produtos.
-				janela = new JFrame("Editar Produtos");
-				janela.setSize(j_comp, j_larg);
+				janela.setTitle("Editar Produtos");
 				
 				// Label.
 				titulo = new JLabel("Produtos Cadastrados");
@@ -50,8 +61,8 @@ public class TelaEditar implements ActionListener {
 				//Botões	
 				cadastrarP = new JButton("Cadastrar");
 				editarP = new JButton("Editar");
-				cadastrarP.setBounds(120, 410, 110, 30);		
-				editarP.setBounds(265, 410, 110, 30);
+				cadastrarP.setBounds(50, 410, 110, 30);		
+				editarP.setBounds(195, 410, 110, 30);
 				janela.add(cadastrarP);
 				janela.add(editarP);
 				cadastrarP.addActionListener(this);
@@ -62,9 +73,9 @@ public class TelaEditar implements ActionListener {
 				janela.setVisible(true);
 				
 			break;
+			
 			case 2: // Edição de filiais.
-				janela = new JFrame("Editar Filiais");
-				janela.setSize(j_comp, j_larg);
+				janela.setTitle("Editar Filiais");
 				
 				// Label.
 				titulo = new JLabel("Filiais Cadastradas");
@@ -81,8 +92,8 @@ public class TelaEditar implements ActionListener {
 				//Botões
 				cadastrarF = new JButton("Cadastrar");
 				editarF = new JButton("Editar");
-				cadastrarF.setBounds(120, 410, 110, 30);		
-				editarF.setBounds(265, 410, 110, 30);
+				cadastrarF.setBounds(50, 410, 110, 30);		
+				editarF.setBounds(195, 410, 110, 30);
 				janela.add(cadastrarF);
 				janela.add(editarF);
 				cadastrarF.addActionListener(this);
@@ -98,8 +109,19 @@ public class TelaEditar implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
+		// Opções gerais.
+		if(src == refresh) {
+			if (op == 1) {
+				nomes_p = new ControleProduto(dados).getNomeProdutos();
+				listaAmbos.setListData(nomes_p);
+			} else {
+				nomes_f = new ControleFilial(dados).getNomeFiliais();
+				listaAmbos.setListData(nomes_f);
+			}
+		}
+		
 		// Opções de cadastro.
-		if(src == cadastrarP)
+		if(src == cadastrarP) {
 			// Verifique se existem filiais.
 			if (dados.getFiliais().length > 0) {
 				new TelaDetalhe(1,dados,0);
@@ -107,8 +129,11 @@ public class TelaEditar implements ActionListener {
 				JOptionPane.showMessageDialog(null,"Não existem filiais!", null, 
 											  JOptionPane.ERROR_MESSAGE);
 			}
-		if(src == cadastrarF)
+		}
+		
+		if(src == cadastrarF) {
 			new TelaDetalhe(2,dados,0);
+		}
 		
 		// Opções de edição.
 		if(src == editarP) {
@@ -116,8 +141,8 @@ public class TelaEditar implements ActionListener {
 			if (pos != -1) {
 				new TelaDetalhe(3,dados,pos);
 			}
-			
 		}
+		
 		if(src == editarF) {
 			int pos = listaAmbos.getSelectedIndex();
 			if (pos != -1) {

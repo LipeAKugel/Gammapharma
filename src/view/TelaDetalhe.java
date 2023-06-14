@@ -12,6 +12,8 @@ public class TelaDetalhe implements ActionListener{
 	private ControleFarmacia dados;
 	private String[] dadosAtuais;
 	private String[] dadosNovos;
+	private int op;
+	private int pos;
 	private JFrame janela;
 	private JButton salvar;
 	private JButton remover;
@@ -74,6 +76,8 @@ public class TelaDetalhe implements ActionListener{
 	
 	public TelaDetalhe (int op, ControleFarmacia dados, int pos) {
 		this.dados = dados;
+		this.op = op;
+		this.pos = pos;
 		
 		// Crie o JFrame.
 		janela = new JFrame("Informações");
@@ -115,6 +119,7 @@ public class TelaDetalhe implements ActionListener{
 			salvar.setBounds(75, 416, 110, 30);
 			remover = new JButton("Remover");
 			remover.setBounds(190, 416, 110, 30);
+			remover.addActionListener(this);
 			janela.add(remover);
 			
 			// Carregue e preencha os dados.
@@ -129,6 +134,7 @@ public class TelaDetalhe implements ActionListener{
 			salvar.setBounds(75, 416, 110, 30);
 			remover = new JButton("Remover");
 			remover.setBounds(190, 416, 110, 30);
+			remover.addActionListener(this);
 			janela.add(remover);
 			
 			// Carregue e preencha os dados.
@@ -142,19 +148,34 @@ public class TelaDetalhe implements ActionListener{
 	// Métodos.
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
-		String categ = (String) categoria.getSelectedItem();
 		
-		// Mude a visibilidade dos elementos dependendo da categoria.
-		if (categ.equals(itens[0])) {
-			opcaoMedicamento();
+		// Funções dos botões.
+		if (src == remover) {
+			if (op == 3) { // Produto.
+				dados.removerProduto(pos);
+				janela.dispose();
+			}
+			if (op == 4) { // Filial.
+				dados.removerFilial(pos);
+				janela.dispose();
+			}
 		}
 		
-		if (categ.equals(itens[1])) {
-			opcaoSuplemento();
-		} 
-		
-		if (categ.equals(itens[2])) {
-			opcaoCosmetico();
+		// Mude a visibilidade dos elementos dependendo da categoria.
+		if (op == 1 || op == 3) {
+			String categ = (String) categoria.getSelectedItem();
+			
+			if (categ.equals(itens[0])) {
+				opcaoMedicamento();
+			}
+			
+			if (categ.equals(itens[1])) {
+				opcaoSuplemento();
+			} 
+			
+			if (categ.equals(itens[2])) {
+				opcaoCosmetico();
+			}
 		}
 	}
 	

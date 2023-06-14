@@ -47,12 +47,12 @@ public class Filial {
 	}
 	
 	// Métodos
-	public void addProduto(Produto produto) {
-		listaProdutos.add(produto);
+	public boolean addProduto(Produto produto) {
+		return listaProdutos.add(produto);
 	}
 	
-	public void deletarProduto(Produto produto) {
-		listaProdutos.remove(produto);
+	public boolean deletarProduto(Produto produto) {
+		return listaProdutos.remove(produto);
 	}
 	
 	// toString

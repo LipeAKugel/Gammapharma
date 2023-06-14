@@ -62,4 +62,44 @@ public class ControleFarmacia {
 		return array;
 	}
 	
+	/*
+	public boolean salvarProduto() {
+		// Salva um produto na farmácia a partir dos dados recebidos.
+	}
+	
+	public boolean salvarFilial() {
+		// Salva uma filial na farmácia a partir dos dados recebidos.
+	}
+	*/
+	
+	public boolean removerProduto(int pos) {
+		// Remove um produto específico da farmácia.
+		boolean removido;
+		Produto prod = getProdutos()[pos];
+		
+		// Ache a filial que esse produto está.
+		int pos_filial = new ControleFilial(this).acharFilial(prod);
+		Filial filial = getFiliais()[pos_filial];
+		
+		// Delete o produto desta filial.
+		removido = filial.deletarProduto(prod);
+		
+		// Atualize a lista de filiais da farmácia.
+		ArrayList<Filial> nova_lista = farmacia.getlistaFiliais();
+		nova_lista.set(pos_filial, filial);
+		farmacia.setlistaFiliais(nova_lista);
+		
+		return removido;
+	}
+	
+	public boolean removerFilial(int pos) {
+		// Remove uma filial específica da farmácia.
+		boolean removido;
+		Filial filial = getFiliais()[pos];
+		
+		// Remova a filial da farmácia.
+		removido = farmacia.deletarFilial(filial);
+		
+		return removido;
+	}
 }

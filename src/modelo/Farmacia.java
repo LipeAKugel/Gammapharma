@@ -41,12 +41,12 @@ public class Farmacia {
 	}
 	
 	// Métodos.
-	public void addFilial(Filial filial) {
-		listaFiliais.add(filial);
+	public boolean addFilial(Filial filial) {
+		return listaFiliais.add(filial);
 	}
 	
-	public void deletarFilial(Filial filial) {
-		listaFiliais.remove(filial);
+	public boolean deletarFilial(Filial filial) {
+		return listaFiliais.remove(filial);
 	}
 	
 	public ArrayList<Filial> buscarFiliais(String cidade) {
