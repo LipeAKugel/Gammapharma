@@ -1,6 +1,9 @@
 package controle;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import modelo.*;
 
@@ -62,15 +65,84 @@ public class ControleFarmacia {
 		return array;
 	}
 	
-	/*
-	public boolean salvarProduto() {
+	public boolean salvarProduto(String[] dados, int pos, int op) {
 		// Salva um produto na farmácia a partir dos dados recebidos.
+		Produto prodNovo = getProdutos()[0];
+		boolean salvo;
+		
+		Filial filial = getFiliais()[Integer.parseInt(dados[1])];
+		
+		Date validade = new Date();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			validade = formato.parse(dados[7]);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		// Salve o produto de acordo com a categoria.
+		switch (Integer.parseInt(dados[0])) {
+		
+			case 0: // Medicamento.
+				prodNovo = new Medicamento(dados[2], dados[6], dados[3], validade,
+										   Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),
+										   dados[8], dados[9], dados[9], dados[10]);
+				salvo = true;
+				
+			break;
+			
+			case 1: // Suplemento.
+				prodNovo = new Suplemento(dados[2], dados[6], dados[3], validade,
+							   			  Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),
+							   			  dados[8], dados[9], dados[10], dados[11], dados[12]);
+				salvo = true;
+				
+			break;
+			
+			case 2: // Cosmético.
+				prodNovo = new Cosmetico(dados[2], dados[6], dados[3], validade,
+							   			 Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),
+							   			 dados[8], dados[9], dados[10]);
+				salvo = true;
+				
+			break;
+			
+			default:
+				// Caso não seja nenhuma categoria, não salve.
+				salvo = false;
+		}
+		
+		// Salvar no sistema.
+		if (salvo != false) {
+			if (op == 1) { // Cadastro de produto novo.
+				salvo = filial.addProduto(prodNovo);
+			} else if (op == 3) { // Salvar produto existente.
+				removerProduto(filial.getlistaProdutos().indexOf(getProdutos()[pos]));
+				salvo = filial.addProduto(prodNovo);
+			}
+		}
+		
+		return salvo;
 	}
 	
-	public boolean salvarFilial() {
+	
+	public boolean salvarFilial(String[] dados, int pos, int op) {
 		// Salva uma filial na farmácia a partir dos dados recebidos.
+		
+		Endereco end = new Endereco(dados[1], dados[6], dados[2], dados[5], dados[4]);
+		Filial filialNova = new Filial(dados[0], dados[3], end);
+		boolean salvo = true;
+		
+		// Salvar no sistema.
+		if (op == 2) {
+			salvo = farmacia.addFilial(filialNova);
+		} else if (op == 4) {
+			removerFilial(pos);
+			salvo = farmacia.addFilial(filialNova);
+		}
+		
+		return salvo;
 	}
-	*/
 	
 	public boolean removerProduto(int pos) {
 		// Remove um produto específico da farmácia.
@@ -79,17 +151,12 @@ public class ControleFarmacia {
 		
 		// Ache a filial que esse produto está.
 		int pos_filial = new ControleFilial(this).acharFilial(prod);
-		Filial filial = getFiliais()[pos_filial];
 		
-		// Delete o produto desta filial.
-		removido = filial.deletarProduto(prod);
-		
-		// Atualize a lista de filiais da farmácia.
-		ArrayList<Filial> nova_lista = farmacia.getlistaFiliais();
-		nova_lista.set(pos_filial, filial);
-		farmacia.setlistaFiliais(nova_lista);
+		// Delete o produto.
+		removido = farmacia.getlistaFiliais().get(pos_filial).deletarProduto(prod);
 		
 		return removido;
+		
 	}
 	
 	public boolean removerFilial(int pos) {
@@ -102,4 +169,13 @@ public class ControleFarmacia {
 		
 		return removido;
 	}
+	
+	public boolean checarDados(String[] dados) {
+		// Checa os dados de um produto.
+		
+		// lorem ipsum.
+		
+		return true;
+	}
+	
 }

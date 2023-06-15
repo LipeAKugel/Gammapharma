@@ -90,6 +90,7 @@ public class TelaDetalhe implements ActionListener{
 		// JButtons.
 		salvar = new JButton("Salvar");
 		salvar.setBounds(135, 416, 110, 30);
+		salvar.addActionListener(this);
 		janela.add(salvar);
 		
 		// Adicione e mostre a janela.
@@ -150,6 +151,71 @@ public class TelaDetalhe implements ActionListener{
 		Object src = e.getSource();
 		
 		// Funções dos botões.
+		if (src == salvar) {
+			if (op == 1 || op == 3) { // Produto.
+				// Guardar os dados do produto.
+				dadosNovos = new String[15];
+				
+				dadosNovos[0] = String.valueOf(categoria.getSelectedIndex()); 			// Categoria.
+				dadosNovos[1] = String.valueOf(filial.getSelectedIndex());				// Filial.
+				dadosNovos[2] = nome.getText();											// Nome.
+				dadosNovos[3] = fabri.getText();										// Fabricante.
+				dadosNovos[4] = peso.getText();											// Peso.
+				dadosNovos[5] = preco.getText();										// Preço.
+				dadosNovos[6] = marca.getText();										// Marca.
+				dadosNovos[7] = vali.getText();											// Validade.
+				
+				// Guardar os dados específicos.
+				switch (categoria.getSelectedIndex()) {
+					case 0: // Medicamento
+						
+						dadosNovos[8] = modoUso.getText();								// Modo uso.
+						dadosNovos[9] = quantidade.getText();							// Quantidade.
+						dadosNovos[10] = dosagem.getText();								// Dosagem.
+						dadosNovos[11] = efeitos.getText();								// Efeitos colaterais.
+						
+					break;
+					
+					case 1: // Suplemento
+						
+						dadosNovos[8] = modoUso.getText();								// Modo uso.
+						dadosNovos[9] = quantidade.getText();							// Quantidade.
+						dadosNovos[10] = dosagem.getText();								// Dosagem.
+						dadosNovos[11] = indicacao.getText();							// Indicação.
+						dadosNovos[12] = principio.getText();							// Princípio.
+						
+					break;
+					
+					case 2: // Cosmético
+						
+						dadosNovos[8] = aplicacao.getText();							// Aplicação.
+						dadosNovos[9] = funcao.getText();								// Função.
+						dadosNovos[10] = tipoPele.getText();							// Tipo pele.
+						
+					break;
+					
+				}
+				
+				//valido = dados.checarDados(dadosNovos);
+				dados.salvarProduto(dadosNovos, pos, op);
+			}
+			if (op == 2 || op == 4) { // Filial.
+				// Guardar os dados da filial.
+				dadosNovos = new String[7];
+				
+				dadosNovos[0] = iden.getText();
+				dadosNovos[1] = logra.getText();
+				dadosNovos[2] = cep.getText();
+				dadosNovos[3] = cnpj.getText();
+				dadosNovos[4] = estado.getText();
+				dadosNovos[5] = cidade.getText();
+				dadosNovos[6] = compl.getText();
+				
+				dados.salvarFilial(dadosNovos, pos, op);
+				
+			}
+		}
+		
 		if (src == remover) {
 			if (op == 3) { // Produto.
 				dados.removerProduto(pos);
@@ -198,7 +264,7 @@ public class TelaDetalhe implements ActionListener{
 		lcategoria = new JLabel("Categoria: ");
 		lmodoUso = new JLabel("Modo Uso: ");
 		lquantidade = new JLabel("Quantidade: ");
-		ldosagem = new JLabel("Dosagem: ");
+		ldosagem = new JLabel("Dosage: ");
 		lefeitos = new JLabel("Efeitos Colaterais: ");
 		lindicacao = new JLabel("Indicação: ");
 		lprincipio = new JLabel("Princípio Ativo: ");
@@ -502,6 +568,7 @@ public class TelaDetalhe implements ActionListener{
 	}
 	
 	public void preencherFilial(int pos) {
+
 		// Preenche os dados de uma filial no TextField.
 		dadosAtuais = new ControleFilial(dados).getDadosFilial(pos);
 		
@@ -513,4 +580,5 @@ public class TelaDetalhe implements ActionListener{
 		cidade.setText(dadosAtuais[5]);
 		compl.setText(dadosAtuais[6]);
 	}
+	
 }

@@ -53,15 +53,14 @@ public class ControleProduto {
 		if (prod instanceof Medicamento) {
 			// Preencha os dados do medicamento.
 			Medicamento med = (Medicamento) prod;
-			prodDados = new String[12];
 			
 			prodDados[0] = "0"; 								// Categoria.
 			prodDados[1] = String.valueOf(new ControleFilial(dados).acharFilial(prod)); // Filial.
 			prodDados[2] = med.getNome(); 						// Nome.
 			prodDados[3] = med.getFabricante(); 				// Fabricante.
 			prodDados[4] = String.valueOf(med.getPeso()); 		// Peso.
-			prodDados[5] = String.valueOf(med.getPreco()); 	// Preço.
-			prodDados[6] = med.getMarca(); 					// Marca.
+			prodDados[5] = String.valueOf(med.getPreco()); 		// Preço.
+			prodDados[6] = med.getMarca(); 						// Marca.
 			prodDados[7] = formato.format(med.getValidade()); 	// Validade.
 			prodDados[8] = med.getModoUso(); 					// Modo Uso.
 			prodDados[9] = med.getQuantidade(); 				// Quantidade.

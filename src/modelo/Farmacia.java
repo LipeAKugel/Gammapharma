@@ -88,7 +88,7 @@ public class Farmacia {
 		
 		for (Filial filial : listaFiliais) {
 			for (Produto produto : filial.getlistaProdutos())  {
-				if (produto.getNome().toLowerCase().equals(nome.toLowerCase())) {
+				if (produto.getNome().toLowerCase().contains(nome.toLowerCase())) {
 					lista.add(produto);
 				}
 			}
