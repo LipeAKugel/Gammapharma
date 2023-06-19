@@ -77,7 +77,8 @@ public class ControleFarmacia {
 		try {
 			validade = formato.parse(dados[7]);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			salvo = false;
+			return salvo;
 		}
 		
 		// Salve o produto de acordo com a categoria.
@@ -110,22 +111,20 @@ public class ControleFarmacia {
 			default:
 				// Caso não seja nenhuma categoria, não salve.
 				salvo = false;
+				return salvo;
 		}
 		
 		// Salvar no sistema.
-		if (salvo != false) {
-			if (op == 1) { // Cadastro de produto novo.
-				salvo = filial.addProduto(prodNovo);
-			} else if (op == 3) { // Salvar produto existente.
-				removerProduto(filial.getlistaProdutos().indexOf(getProdutos()[pos]));
-				salvo = filial.addProduto(prodNovo);
-			}
+		if (op == 1) { // Cadastro de produto novo.
+			salvo = filial.addProduto(prodNovo);
+		} else if (op == 3) { // Salvar produto existente.
+			removerProduto(filial.getlistaProdutos().indexOf(getProdutos()[pos]));
+			salvo = filial.addProduto(prodNovo);
 		}
 		
 		return salvo;
 	}
-	
-	
+
 	public boolean salvarFilial(String[] dados, int pos, int op) {
 		// Salva uma filial na farmácia a partir dos dados recebidos.
 		
@@ -137,6 +136,8 @@ public class ControleFarmacia {
 		if (op == 2) {
 			salvo = farmacia.addFilial(filialNova);
 		} else if (op == 4) {
+			// Guarde os produtos na filial nova.
+			filialNova.setlistaProdutos(getFiliais()[pos].getlistaProdutos());
 			removerFilial(pos);
 			salvo = farmacia.addFilial(filialNova);
 		}
@@ -170,10 +171,41 @@ public class ControleFarmacia {
 		return removido;
 	}
 	
-	public boolean checarDados(String[] dados) {
+	public boolean checarDados(String[] dados, int op) {
 		// Checa os dados de um produto.
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
-		// lorem ipsum.
+		if (op == 1) { // Checar os dados de um produto.
+			
+			if (dados[2].isEmpty()) return false;
+			if (dados[3].isEmpty()) return false;
+			if (dados[6].isEmpty()) return false;
+			
+			try {
+				Double.parseDouble(dados[4]); // Peso
+				Double.parseDouble(dados[5]); // Preço
+			} catch (NumberFormatException e) {
+				return false;
+			}
+			
+			try {
+				formato.parse(dados[7]);
+			} catch (ParseException e) {
+				return false;
+			}
+			
+		}
+		
+		if (op == 2) { // Checar os dados de uma filial.
+			
+			if (dados[0].isEmpty()) return false;
+			if (dados[1].isEmpty()) return false;
+			if (dados[2].isEmpty()) return false;
+			if (dados[3].isEmpty()) return false;
+			if (dados[4].isEmpty()) return false;
+			if (dados[5].isEmpty()) return false;
+			
+		}
 		
 		return true;
 	}

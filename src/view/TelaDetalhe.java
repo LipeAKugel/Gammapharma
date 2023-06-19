@@ -18,7 +18,7 @@ public class TelaDetalhe implements ActionListener{
 	private JButton salvar;
 	private JButton remover;
 	
-	//Variaveis produto.
+	// Elementos de produto.
 	String[] filiais;
 	private JComboBox<String> filial;
 	private JLabel lfilial;
@@ -38,7 +38,7 @@ public class TelaDetalhe implements ActionListener{
 	private JComboBox<String> categoria;
 	private JLabel lcategoria;
 	
-	// Variáveis produtos específicos de categorias.
+	// Elementos de categoria.
 	private JLabel lmodoUso;
 	private JTextField modoUso;
 	private JLabel lquantidade;
@@ -58,7 +58,7 @@ public class TelaDetalhe implements ActionListener{
 	private JLabel ltipoPele;
 	private JTextField tipoPele;
 	
-	//Variaveis filiais.
+	// Elementos de filial.
 	private JLabel liden;
 	private JTextField iden;
 	private JLabel llogra;
@@ -97,6 +97,7 @@ public class TelaDetalhe implements ActionListener{
 		janela.setLayout(null);
 		janela.setVisible(true);
 		
+		// Construa a tela de acordo com a opção.
 		switch (op) {
 		case 1: // Cadastro de produto.
 			construirTelaProd();
@@ -154,65 +155,43 @@ public class TelaDetalhe implements ActionListener{
 		if (src == salvar) {
 			if (op == 1 || op == 3) { // Produto.
 				// Guardar os dados do produto.
-				dadosNovos = new String[15];
+				guardarProduto();
 				
-				dadosNovos[0] = String.valueOf(categoria.getSelectedIndex()); 			// Categoria.
-				dadosNovos[1] = String.valueOf(filial.getSelectedIndex());				// Filial.
-				dadosNovos[2] = nome.getText();											// Nome.
-				dadosNovos[3] = fabri.getText();										// Fabricante.
-				dadosNovos[4] = peso.getText();											// Peso.
-				dadosNovos[5] = preco.getText();										// Preço.
-				dadosNovos[6] = marca.getText();										// Marca.
-				dadosNovos[7] = vali.getText();											// Validade.
-				
-				// Guardar os dados específicos.
-				switch (categoria.getSelectedIndex()) {
-					case 0: // Medicamento
-						
-						dadosNovos[8] = modoUso.getText();								// Modo uso.
-						dadosNovos[9] = quantidade.getText();							// Quantidade.
-						dadosNovos[10] = dosagem.getText();								// Dosagem.
-						dadosNovos[11] = efeitos.getText();								// Efeitos colaterais.
-						
-					break;
-					
-					case 1: // Suplemento
-						
-						dadosNovos[8] = modoUso.getText();								// Modo uso.
-						dadosNovos[9] = quantidade.getText();							// Quantidade.
-						dadosNovos[10] = dosagem.getText();								// Dosagem.
-						dadosNovos[11] = indicacao.getText();							// Indicação.
-						dadosNovos[12] = principio.getText();							// Princípio.
-						
-					break;
-					
-					case 2: // Cosmético
-						
-						dadosNovos[8] = aplicacao.getText();							// Aplicação.
-						dadosNovos[9] = funcao.getText();								// Função.
-						dadosNovos[10] = tipoPele.getText();							// Tipo pele.
-						
-					break;
-					
+				// Verifique os dados e depois salve-os.
+				boolean dadosValidos = dados.checarDados(dadosNovos, 1);
+				if (dadosValidos) {
+					boolean concluido = dados.salvarProduto(dadosNovos, pos, op);
+					if (concluido) {
+						janela.dispose();
+					} else {
+						JOptionPane.showMessageDialog(null,"Dados não salvos!", null, 
+								  JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,"Verifique os dados!", null, 
+							  JOptionPane.ERROR_MESSAGE);
 				}
 				
-				//valido = dados.checarDados(dadosNovos);
-				dados.salvarProduto(dadosNovos, pos, op);
 			}
+			
 			if (op == 2 || op == 4) { // Filial.
 				// Guardar os dados da filial.
-				dadosNovos = new String[7];
+				guardarFilial();
 				
-				dadosNovos[0] = iden.getText();
-				dadosNovos[1] = logra.getText();
-				dadosNovos[2] = cep.getText();
-				dadosNovos[3] = cnpj.getText();
-				dadosNovos[4] = estado.getText();
-				dadosNovos[5] = cidade.getText();
-				dadosNovos[6] = compl.getText();
-				
-				dados.salvarFilial(dadosNovos, pos, op);
-				
+				// Verifique os dados e depois salve-os.
+				boolean dadosValidos = dados.checarDados(dadosNovos, 2);
+				if (dadosValidos) {
+					boolean concluido = dados.salvarFilial(dadosNovos, pos, op);
+					if (concluido) {
+						janela.dispose();
+					} else {
+						JOptionPane.showMessageDialog(null,"Dados não salvos!", null, 
+								  JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,"Verifique os dados!", null, 
+							  JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 		
@@ -255,12 +234,12 @@ public class TelaDetalhe implements ActionListener{
 		
 		// Labels.
 		lfilial = new JLabel("Filial: ");
-		lnome = new JLabel("Nome: ");
-		lfabri = new JLabel("Fabricante: ");
-		lpeso = new JLabel("Peso: ");
-		lpreco = new JLabel("Preco: ");
-		lmarca = new JLabel("Marca: ");
-		lvali = new JLabel("Validade: ");
+		lnome = new JLabel("Nome*: ");
+		lfabri = new JLabel("Fabricante*: ");
+		lpeso = new JLabel("Peso*: ");
+		lpreco = new JLabel("Preco*: ");
+		lmarca = new JLabel("Marca*: ");
+		lvali = new JLabel("Validade*: ");
 		lcategoria = new JLabel("Categoria: ");
 		lmodoUso = new JLabel("Modo Uso: ");
 		lquantidade = new JLabel("Quantidade: ");
@@ -384,12 +363,12 @@ public class TelaDetalhe implements ActionListener{
 		int tp_y = 22; // Y inicial dos JTextFields.
 		
 		// Labels
-		liden = new JLabel("Identificador: ");
-		llogra = new JLabel("Logradouro: ");
-		lcep = new JLabel("CEP: ");
-		lcnpj = new JLabel("CNPJ: ");
-		lestado = new JLabel("Estado: ");
-		lcidade = new JLabel("Cidade: " );
+		liden = new JLabel("Identificador*: ");
+		llogra = new JLabel("Logradouro*: ");
+		lcep = new JLabel("CEP*: ");
+		lcnpj = new JLabel("CNPJ*: ");
+		lestado = new JLabel("Estado*: ");
+		lcidade = new JLabel("Cidade*: " );
 		lcompl = new JLabel("Complemento: ");
 		
 		liden.setBounds(p_x, p_y, 80, 60);
@@ -579,6 +558,66 @@ public class TelaDetalhe implements ActionListener{
 		estado.setText(dadosAtuais[4]);
 		cidade.setText(dadosAtuais[5]);
 		compl.setText(dadosAtuais[6]);
+	}
+	
+	public void guardarProduto() {
+		// Guardar todos os dados de produto presente nos TextFields.
+		dadosNovos = new String[15];
+		
+		dadosNovos[0] = String.valueOf(categoria.getSelectedIndex()); 			// Categoria.
+		dadosNovos[1] = String.valueOf(filial.getSelectedIndex());				// Filial.
+		dadosNovos[2] = nome.getText();											// Nome.
+		dadosNovos[3] = fabri.getText();										// Fabricante.
+		dadosNovos[4] = peso.getText();											// Peso.
+		dadosNovos[5] = preco.getText();										// Preço.
+		dadosNovos[6] = marca.getText();										// Marca.
+		dadosNovos[7] = vali.getText();											// Validade.
+		
+		// Guardar os dados específicos.
+		switch (categoria.getSelectedIndex()) {
+			case 0: // Medicamento
+				
+				dadosNovos[8] = modoUso.getText();								// Modo uso.
+				dadosNovos[9] = quantidade.getText();							// Quantidade.
+				dadosNovos[10] = dosagem.getText();								// Dosagem.
+				dadosNovos[11] = efeitos.getText();								// Efeitos colaterais.
+				
+			break;
+			
+			case 1: // Suplemento
+				
+				dadosNovos[8] = modoUso.getText();								// Modo uso.
+				dadosNovos[9] = quantidade.getText();							// Quantidade.
+				dadosNovos[10] = dosagem.getText();								// Dosagem.
+				dadosNovos[11] = indicacao.getText();							// Indicação.
+				dadosNovos[12] = principio.getText();							// Princípio.
+				
+			break;
+			
+			case 2: // Cosmético
+				
+				dadosNovos[8] = aplicacao.getText();							// Aplicação.
+				dadosNovos[9] = funcao.getText();								// Função.
+				dadosNovos[10] = tipoPele.getText();							// Tipo pele.
+				
+			break;
+			
+		}
+	}
+	
+	public void guardarFilial() {
+		// Guarda todos os dados de filial presente nos TextFields.
+		
+		dadosNovos = new String[7];
+		
+		dadosNovos[0] = iden.getText();
+		dadosNovos[1] = logra.getText();
+		dadosNovos[2] = cep.getText();
+		dadosNovos[3] = cnpj.getText();
+		dadosNovos[4] = estado.getText();
+		dadosNovos[5] = cidade.getText();
+		dadosNovos[6] = compl.getText();
+		
 	}
 	
 }
