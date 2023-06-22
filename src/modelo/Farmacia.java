@@ -59,7 +59,7 @@ public class Farmacia {
 			String filialCidade = filial.getEndereco().getCidade();
 			
 			// Se a cidade coincidir, adicione essa filial a lista.
-			if (filialCidade.toLowerCase().equals(cidade.toLowerCase())) {
+			if (filialCidade.toLowerCase().contains(cidade.toLowerCase())) {
 				lista.add(filial);
 			}
 		}

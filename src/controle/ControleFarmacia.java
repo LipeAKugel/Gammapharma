@@ -67,18 +67,16 @@ public class ControleFarmacia {
 	
 	public boolean salvarProduto(String[] dados, int pos, int op) {
 		// Salva um produto na farmácia a partir dos dados recebidos.
-		Produto prodNovo = getProdutos()[0];
-		boolean salvo;
-		
+		Produto prodNovo;
 		Filial filial = getFiliais()[Integer.parseInt(dados[1])];
+		boolean salvo;
 		
 		Date validade = new Date();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			validade = formato.parse(dados[7]);
 		} catch (ParseException e) {
-			salvo = false;
-			return salvo;
+			return false;
 		}
 		
 		// Salve o produto de acordo com a categoria.
@@ -88,7 +86,6 @@ public class ControleFarmacia {
 				prodNovo = new Medicamento(dados[2], dados[6], dados[3], validade,
 										   Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),
 										   dados[8], dados[9], dados[9], dados[10]);
-				salvo = true;
 				
 			break;
 			
@@ -96,7 +93,6 @@ public class ControleFarmacia {
 				prodNovo = new Suplemento(dados[2], dados[6], dados[3], validade,
 							   			  Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),
 							   			  dados[8], dados[9], dados[10], dados[11], dados[12]);
-				salvo = true;
 				
 			break;
 			
@@ -104,22 +100,24 @@ public class ControleFarmacia {
 				prodNovo = new Cosmetico(dados[2], dados[6], dados[3], validade,
 							   			 Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),
 							   			 dados[8], dados[9], dados[10]);
-				salvo = true;
 				
 			break;
 			
 			default:
 				// Caso não seja nenhuma categoria, não salve.
-				salvo = false;
-				return salvo;
+				return false;
 		}
 		
 		// Salvar no sistema.
 		if (op == 1) { // Cadastro de produto novo.
 			salvo = filial.addProduto(prodNovo);
 		} else if (op == 3) { // Salvar produto existente.
-			removerProduto(filial.getlistaProdutos().indexOf(getProdutos()[pos]));
-			salvo = filial.addProduto(prodNovo);
+			// Achar a posição do produto na sua filial.
+			int posNaFilial = filial.getlistaProdutos().indexOf(getProdutos()[pos]);
+			filial.getlistaProdutos().set(posNaFilial, prodNovo);
+			salvo = true;
+		} else {
+			salvo = false;
 		}
 		
 		return salvo;
@@ -127,19 +125,20 @@ public class ControleFarmacia {
 
 	public boolean salvarFilial(String[] dados, int pos, int op) {
 		// Salva uma filial na farmácia a partir dos dados recebidos.
-		
 		Endereco end = new Endereco(dados[1], dados[6], dados[2], dados[5], dados[4]);
 		Filial filialNova = new Filial(dados[0], dados[3], end);
-		boolean salvo = true;
+		boolean salvo;
 		
 		// Salvar no sistema.
-		if (op == 2) {
+		if (op == 2) { // Cadastro de filial nova.
 			salvo = farmacia.addFilial(filialNova);
-		} else if (op == 4) {
+		} else if (op == 4) { // Edição de filial já existente.
 			// Guarde os produtos na filial nova.
 			filialNova.setlistaProdutos(getFiliais()[pos].getlistaProdutos());
-			removerFilial(pos);
-			salvo = farmacia.addFilial(filialNova);
+			farmacia.getlistaFiliais().set(pos, filialNova);
+			salvo = true;
+		} else {
+			salvo = false;
 		}
 		
 		return salvo;
