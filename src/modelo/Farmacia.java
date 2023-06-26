@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+/**
+ * A classe Farmacia representa uma farmácia.
+ */
 public class Farmacia {
 
 	// Atributos.
@@ -12,6 +14,12 @@ public class Farmacia {
 	private String cnpj;
 	private ArrayList<Filial> listaFiliais;
 	
+	/**
+     * Construtor da classe Farmacia.
+     *
+     * @param nome  O nome da farmácia.
+     * @param cnpj  O CNPJ da farmácia.
+     */
 	public Farmacia(String nome, String cnpj) {
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -19,36 +27,82 @@ public class Farmacia {
 	}
 	
 	// Gets
+	/**
+     * Obtém o nome da farmácia.
+     *
+     * @return O nome da farmácia.
+     */
 	public String getNome() {
 		return nome;
 	}
+	/**
+     * Obtém o CNPJ da farmácia.
+     *
+     * @return O CNPJ da farmácia.
+     */
 	public String getCnpj() {
 		return cnpj;
 	}
+	/**
+     * Obtém a lista de filiais da farmácia.
+     *
+     * @return A lista de filiais da farmácia.
+     */
 	public ArrayList<Filial> getlistaFiliais() {
 		return listaFiliais;
 	}
 	
 	// Sets
+	/**
+     * Define o nome da farmácia.
+     *
+     * @param nome O nome da farmácia.
+     */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	/**
+     * Define o CNPJ da farmácia.
+     *
+     * @param cnpj O CNPJ da farmácia.
+     */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	/**
+     * Define a lista de filiais da farmácia.
+     *
+     * @param lista A lista de filiais da farmácia.
+     */
 	public void setlistaFiliais(ArrayList<Filial> lista) {
 		listaFiliais = lista;
 	}
 	
 	// Métodos.
+	/**
+     * Adiciona uma filial à farmácia.
+     *
+     * @param filial A filial a ser adicionada.
+     * @return true se a filial foi adicionada com sucesso, false caso contrário.
+     */ 
 	public boolean addFilial(Filial filial) {
 		return listaFiliais.add(filial);
 	}
-	
+	/**
+     * Remove uma filial da farmácia.
+     *
+     * @param filial A filial a ser removida.
+     * @return true se a filial foi removida com sucesso, false caso contrário.
+     */
 	public boolean deletarFilial(Filial filial) {
 		return listaFiliais.remove(filial);
 	}
-	
+	/**
+     * Busca filiais por cidade.
+     *
+     * @param cidade A cidade para a qual deseja buscar as filiais.
+     * @return Uma lista com todas as filiais da cidade especificada.
+     */
 	public ArrayList<Filial> buscarFiliais(String cidade) {
 		// Retorna uma lista com todas as filiais de uma determinada cidade.
 		
@@ -66,7 +120,11 @@ public class Farmacia {
 		
 		return lista;
 	}
-
+    /**
+     * Retorna uma lista com todos os produtos cadastrados em todas as filiais da farmácia.
+     *
+     * @return Uma lista com todos os produtos cadastrados em todas as filiais.
+     */
 	public ArrayList<Produto> produtosCadastrados() {
 		// Retorna uma lista com todos os produtos cadastrados em todas as filiais.
 		
@@ -80,7 +138,12 @@ public class Farmacia {
 		
 		return produtosCadastrados;
 	}
-	
+    /**
+     * Busca produtos por nome em todas as filiais da farmácia.
+     *
+     * @param nome O nome do produto a ser buscado.
+     * @return Uma lista com todos os produtos que possuem o nome especificado.
+     */
 	public ArrayList<Produto> buscarProdutos(String nome) {
 		// Retorna uma lista com todos os produtos com certo nome.
 		
@@ -96,7 +159,9 @@ public class Farmacia {
 		
 		return lista;
 	}
-	
+	/**
+     * Preenche a farmácia com alguns dados de exemplo.
+     */
 	public void fillWithSomeData() {
 		// Preencha com alguns dados.
 		
@@ -125,7 +190,12 @@ public class Farmacia {
 		
 		this.addFilial(filial01);
 	}
-	
+	/**
+     * Retorna uma representação em formato de String da farmácia.
+     *
+     * @return Uma String contendo o nome, o CNPJ e o número de filiais da farmácia.
+     */
+    @Override
 	// toString.
 	public String toString() {
 		return "Nome: " + nome + ", Cnpj: " + cnpj +
