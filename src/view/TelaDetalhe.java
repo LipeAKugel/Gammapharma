@@ -6,7 +6,14 @@ import java.text.SimpleDateFormat;
 import javax.swing.*;
 import controle.*;
 import modelo.*;
-
+/**
+ * A classe TelaDetalhe implementa a interface ActionListener
+ * e representa uma tela de detalhes para cadastro ou edição
+ * de produtos ou filiais em uma farmácia.
+ * @author Felipe Amorim e João Vitor
+ * @since 2023
+ * @version 1.0
+ */
 public class TelaDetalhe implements ActionListener{
 	
 	private ControleFarmacia dados;
@@ -74,6 +81,14 @@ public class TelaDetalhe implements ActionListener{
 	private JLabel lcnpj;
 	private JTextField cnpj;
 	
+    /**
+     * Constrói um objeto TelaDetalhe com a opção, os dados e a posição fornecidos.
+     * 
+     * @param op    a opção selecionada (1 para cadastro de produto, 2 para cadastro de filial, 
+     *              3 para edição de produto, 4 para edição de filial)
+     * @param dados os dados da farmácia
+     * @param pos   a posição do objeto na lista de produtos ou filiais
+     */
 	public TelaDetalhe (int op, ControleFarmacia dados, int pos) {
 		this.dados = dados;
 		this.op = op;
@@ -148,6 +163,11 @@ public class TelaDetalhe implements ActionListener{
 	}
 	
 	// Métodos.
+	/**
+	 * Executa a ação correspondente ao evento recebido.
+	 *
+	 * @param e o evento que ocorreu
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
@@ -223,7 +243,9 @@ public class TelaDetalhe implements ActionListener{
 			}
 		}
 	}
-	
+	/**
+	 * Constrói a tela de produto, adicionando os labels, text fields e combo boxes correspondentes aos dados do produto.
+	 */
 	public void construirTelaProd() {
 		// Constrói a tela de produto.
 		
@@ -353,7 +375,9 @@ public class TelaDetalhe implements ActionListener{
 		janela.add(tipoPele);
 		
 	}
-	
+	/**
+	 * Constrói a tela de filial, adicionando os labels e text fields correspondentes aos dados da filial.
+	 */
 	public void construirTelaFilial() {
 		// Constrói a tela de filial.
 		
@@ -415,7 +439,9 @@ public class TelaDetalhe implements ActionListener{
 		janela.add(cidade);
 		
 	}
-	
+	/**
+	 * Torna os atributos de um medicamento visíveis e oculta os atributos de suplemento e cosmético.
+	 */
 	public void opcaoMedicamento() {
 		// Torna os atributos de um medicamento visíveis.
 		lmodoUso.setVisible(true);
@@ -438,7 +464,9 @@ public class TelaDetalhe implements ActionListener{
 		funcao.setVisible(false);
 		tipoPele.setVisible(false);
 	}
-
+	/**
+	 * Torna os atributos de um suplemento visíveis e oculta os atributos de medicamento e cosmético.
+	 */
 	public void opcaoSuplemento() {
 		// Torna os atributos de um suplemento visíveis.
 		lmodoUso.setVisible(true);
@@ -461,7 +489,9 @@ public class TelaDetalhe implements ActionListener{
 		funcao.setVisible(false);
 		tipoPele.setVisible(false);
 	}
-	
+	/**
+	 * Torna os atributos de um cosmético visíveis e oculta os atributos de medicamento e suplemento.
+	 */
 	public void opcaoCosmetico() {
 		// Torna os atributos de um cosmético visíveis.
 		lmodoUso.setVisible(false);
@@ -484,7 +514,11 @@ public class TelaDetalhe implements ActionListener{
 		funcao.setVisible(true);
 		tipoPele.setVisible(true);
 	}
-
+	/**
+	 * Preenche os dados de um produto nos TextFields com base na posição fornecida.
+	 * 
+	 * @param pos A posição do produto na lista de dados.
+	 */
 	public void preencherProduto(int pos) {
 		// Preenche os dados de um produto nos TextFields.
 		dadosAtuais = new ControleProduto(dados).getDadosProduto(pos);
@@ -545,7 +579,11 @@ public class TelaDetalhe implements ActionListener{
 			break;
 		}
 	}
-	
+	/**
+	 * Preenche os dados de uma filial nos TextFields com base na posição fornecida.
+	 * 
+	 * @param pos A posição da filial na lista de dados.
+	 */
 	public void preencherFilial(int pos) {
 
 		// Preenche os dados de uma filial no TextField.
@@ -559,7 +597,10 @@ public class TelaDetalhe implements ActionListener{
 		cidade.setText(dadosAtuais[5]);
 		compl.setText(dadosAtuais[6]);
 	}
-	
+
+	/**
+	 * Guarda todos os dados do produto presentes nos TextFields.
+	 */
 	public void guardarProduto() {
 		// Guardar todos os dados de produto presente nos TextFields.
 		dadosNovos = new String[15];
@@ -604,7 +645,9 @@ public class TelaDetalhe implements ActionListener{
 			
 		}
 	}
-	
+	/**
+	 * Guarda todos os dados da filial presentes nos TextFields.
+	 */
 	public void guardarFilial() {
 		// Guarda todos os dados de filial presente nos TextFields.
 		

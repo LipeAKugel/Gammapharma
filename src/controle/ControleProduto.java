@@ -3,17 +3,33 @@ package controle;
 import java.text.SimpleDateFormat;
 
 import modelo.*;
-
+/**
+ * A classe ControleProduto é responsável por gerenciar as operações relacionadas aos produtos
+ * da farmácia. Ela fornece métodos para obter informações sobre os produtos, filtrar produtos
+ * por nome e obter os dados de um produto específico.
+ * @author Felipe Amorim
+ * @since 2023
+ * @version 1.0
+ */
 public class ControleProduto {
 	
 	private Produto[] produtos;
 	private ControleFarmacia dados;
-	
+	/**
+	 * Construtor da classe ControleProduto. Recebe uma instância de ControleFarmacia
+	 * para obter acesso aos dados dos produtos.
+	 *
+	 * @param dados Uma instância de ControleFarmacia contendo os dados da farmácia.
+	 */
 	public ControleProduto(ControleFarmacia dados) {
 		this.dados = dados;
 		produtos = dados.getProdutos();
 	}
-	
+	/**
+	 * Obtém uma lista com o nome de todos os produtos.
+	 *
+	 * @return Um array de strings contendo os nomes dos produtos.
+	 */
 	public String[] getNomeProdutos() {
 		// Retorna uma lista com todos os nomes dos produtos. 
 		String[] nomes = new String[produtos.length];
@@ -26,7 +42,12 @@ public class ControleProduto {
 		
 		return nomes;
 	}
-
+	/**
+	 * Obtém uma lista com o nome de todos os produtos filtrados por nome.
+	 *
+	 * @param nome O nome pelo qual os produtos devem ser filtrados.
+	 * @return Um array de strings contendo os nomes dos produtos filtrados.
+	 */
 	public String[] getNomeFiltrado(String nome) {
 		// Retorna uma lista de todos os nomes dos produtos filtrados.
 		Produto[] lista = dados.buscaProdutos(nome);
@@ -40,7 +61,12 @@ public class ControleProduto {
 		
 		return nomes;
 	}
-	
+	/**
+	 * Obtém os dados de um produto em uma determinada posição.
+	 *
+	 * @param pos A posição do produto na lista de produtos.
+	 * @return Um array de strings contendo os dados do produto.
+	 */
 	public String[] getDadosProduto(int pos) {
 		// Retorna os dados de um produto de uma certa posição.
 		

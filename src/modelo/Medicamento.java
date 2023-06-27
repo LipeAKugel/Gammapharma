@@ -3,18 +3,20 @@ package modelo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
- * A classe Medicamento representa uma categoria de produto.
- * Herda características da classe Produto e adiciona informações específicas para a herança de Medicamento.
+ * A classe Medicamento representa uma categoria de produto que herda características
+ * da classe Produto. Ela adiciona informações específicas para medicamentos,
+ * como modo de uso, quantidade, dosagem e efeitos colaterais. 
+ * @author Felipe Amorim e João Vitor
+ * @since 2023
+ * @version 1.0
  */
 public class Medicamento extends Produto {
 	
-	//Atributos
 	private String modoUso;
 	private String quantidade;
 	private String dosagem;
 	private String efeitosColaterais;
 	
-	//Construtor
 	/**
      * Construtor da classe Medicamento.
      *
@@ -39,79 +41,40 @@ public class Medicamento extends Produto {
 		this.efeitosColaterais = efeitosColaterais;
 	}
 	
-	//Gets
-	/**
-     * Obtém o modo de uso do medicamento.
-     *
-     * @return O modo de uso.
-     */
 	public String getModoUso() {
 		return modoUso;
 	}
-	/**
-     * Obtém a quantidade do medicamento.
-     *
-     * @return A quantidade.
-     */
+
 	public String getQuantidade() {
 		return quantidade;
 	}
-	/**
-     * Obtém a dosagem do medicamento.
-     *
-     * @return A dosagem.
-     */
+
 	public String getDosagem() {
 		return dosagem;
 	}
-	/**
-     * Obtém os efeitos colaterais do medicamento.
-    *
-    * @return Os efeitos colaterais.
-    */
+
 	public String getEfeitosColaterais() {
 		return efeitosColaterais;
 	}
-	//Sets
-	/**
-     * Define o modo de uso do medicamento.
-     *
-     * @param modoUso.
-     */
+
 	public void setModoUso(String modoUso) {
 		this.modoUso = modoUso;
 	}
-	/**
-     * Define a quantidade do medicamento.
-     *
-     * @param quantidade.
-     */
+
 	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
 	}
-	/**
-     * Define a dosagem do medicamento.
-     *
-     * @param dosagem.
-     */
+
 	public void setDosagem(String dosagem) {
 		this.dosagem = dosagem;
 	}
-	/**
-     * Define os efeitos colaterais do medicamento.
-     *
-     * @param efeitosColaterais.
-     */
+
 	public void setEfeitosColaterais(String efeitosColaterais) {
 		this.efeitosColaterais = efeitosColaterais;
 	}
-	
-	// toString.
 	/**
-     * Retorna uma representação em formato de String do medicamento.
-     *
-     * @return Uma String contendo o nome, a marca, a validade, o preço,
-     * o modo de uso e a quantidade de medicamento.
+     * @return Uma representação em forma de String do medicamento que contém:
+     * nome, marca, validade, preço, modo de uso e a quantidade do medicamento.
      */
     @Override
 	public String toString() {

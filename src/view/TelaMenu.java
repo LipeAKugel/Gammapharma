@@ -5,7 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import controle.ControleFarmacia;
-
+/**
+ * Classe responsável por exibir o menu inicial da aplicação.
+ * @author Felipe Amorim e João Vitor
+ * @since 2023
+ * @version 1.0
+ */
 public class TelaMenu implements ActionListener {
 	
 	// Crie o container JFrame.
@@ -16,7 +21,10 @@ public class TelaMenu implements ActionListener {
 	private static JButton editarProduto = new JButton("Editar Produto");
 	private static JButton editarFilial = new JButton("Editar Filial");
 	private static ControleFarmacia dados = new ControleFarmacia();
-	
+	/**
+     * Construtor da classe TelaMenu.
+     * Cria e exibe a janela do menu inicial.
+     */
 	public TelaMenu() {
 		
 		// Set as bounds.
@@ -51,7 +59,11 @@ public class TelaMenu implements ActionListener {
 		janela.setVisible(true);
 		
 	}
-	
+	/**
+     * Método chamado quando um botão é clicado.
+     * 
+     * @param e O evento de ação.
+     */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
@@ -64,7 +76,11 @@ public class TelaMenu implements ActionListener {
 		if (src == editarFilial)
 			new TelaEditar().mostrarDados(2,dados);
 	}
-	
+	/**
+     * Método principal para iniciar o programa.
+     * 
+     * @param args Argumentos de linha de comando.
+     */
 	public static void main(String args[]) {
 		TelaMenu menu = new TelaMenu();
 		

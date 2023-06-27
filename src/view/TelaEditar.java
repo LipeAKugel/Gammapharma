@@ -7,7 +7,12 @@ import javax.swing.*;
 import controle.ControleFarmacia;
 import controle.ControleFilial;
 import controle.ControleProduto;
-
+/**
+ * Classe responsável por exibir a tela de edição de produtos e filiais.
+ * @author Felipe Amorim e João Vitor
+ * @since 2023
+ * @version 1.0
+ */
 public class TelaEditar implements ActionListener {
 	private JFrame janela;
 	private ControleFarmacia dados;
@@ -21,7 +26,13 @@ public class TelaEditar implements ActionListener {
 	private JButton editarF;
 	private String[] nomes_p = new String[50];
 	private String[] nomes_f = new String[50];
-
+	
+	 /**
+     * Exibe os dados na tela de edição de produtos ou filiais.
+     * 
+     * @param op    A opção selecionada (1 para produtos, 2 para filiais).
+     * @param dados O objeto ControleFarmacia contendo os dados da farmácia.
+     */
 	public void mostrarDados(int op, ControleFarmacia dados) {
 		this.dados = dados;
 		this.op = op;
@@ -106,7 +117,11 @@ public class TelaEditar implements ActionListener {
 		}
 		
 	}
-	
+    /**
+     * Método chamado quando um botão é clicado.
+     * 
+     * @param e O evento de ação.
+     */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		// Opções gerais.

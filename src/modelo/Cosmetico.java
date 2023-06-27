@@ -3,15 +3,18 @@ package modelo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
- * A classe Cosmetico representa uma categoria de produto.
- * Herda características da classe Produto e adiciona informações específicas para a herança de cosmetico.
- * @author Joao **
+ * A classe Cosmetico representa uma categoria de produto de cosméticos.
+ * Ela herda as características da classe Produto e adiciona informações
+ * específicas de sua categoria, como aplicação, função e tipo de pele 
+ * para o qual o cosmético é indicado. Essa classe possui métodos para acessar
+ * e modificar essas informações, além de uma representação em formato de String 
+ * do produto de cosmético, contendo nome, marca, preço, validade, aplicação e função.
+ * @author João Vitor e Felipe Amorim
  * @since 2023
  * @version 1.0
  */
 public class Cosmetico extends Produto{
 	
-	//Atributos
 	private String aplicacao;
 	private String funcao;
 	private String tipoPele;
@@ -29,7 +32,6 @@ public class Cosmetico extends Produto{
      * @param funcao     A função do cosmético.
      * @param tipoPele   O tipo de pele para o qual o cosmético é indicado.
      */
-	//Construtor 
 	public Cosmetico (String nome, String marca, String fab, Date val,
 					  double peso, double preco, String aplicacao,
 					  String funcao, String tipoPele) {
@@ -38,63 +40,34 @@ public class Cosmetico extends Produto{
 		this.funcao = funcao;
 		this.tipoPele = tipoPele;
 	}
-	
-	//Gets
-	/**
-     * Obtém a aplicação do cosmético.
-     *
-     * @return A aplicação do cosmético.
-     */
+
 	public String getAplicacao() {
 		return aplicacao;
 	}
-    /**
-     * Obtém a função do cosmético.
-     *
-     * @return A função do cosmético.
-     */
+
 	public String getFuncao() {
 		return funcao;
 	}
-    /**
-     * Obtém o tipo de pele para o qual o cosmético é indicado.
-     *
-     * @return O tipo de pele para o qual o cosmético é indicado.
-     */
+	
 	public String getTipoPele() {
 		return tipoPele;
 	}
 	
-	//Sets
-    /**
-     * Define a aplicação do cosmético.
-     *
-     * @param aplicacao A aplicação do cosmético.
-     */
 	public void setAplicacao(String aplicacao) {
 		this.aplicacao = aplicacao;
 	}
-    /**
-     * Define a função do cosmético.
-     *
-     * @param funcao A função do cosmético.
-     */
+
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
-    /**
-     * Define o tipo de pele para o qual o cosmético é indicado.
-     *
-     * @param tipoPele O tipo de pele para o qual o cosmético é indicado.
-     */
+
 	public void setTipoPele(String tipoPele) {
 		this.tipoPele = tipoPele;
 	}
 	
     /**
-     * Retorna uma representação em forma de String do objeto Cosmetico.
-     *
-     * @return Uma representação em forma de String do objeto Cosmetico.
+     * @return Uma representação em forma de String do Cosmetico que contém: 
+     * nome, marca, preço, validade, aplicação e função.
      */
 	 @Override
 	public String toString() {

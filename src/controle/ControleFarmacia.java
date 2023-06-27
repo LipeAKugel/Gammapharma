@@ -7,8 +7,18 @@ import java.util.Date;
 
 import modelo.*;
 
+/**
+ * A classe ControleFarmacia é responsável por gerenciar as operações da farmácia,
+ * como acesso aos produtos e filiais, busca, adição, remoção e edição de produtos e filiais.
+ * @author Felipe Amorim
+ * @since 2023
+ * @version 1.0
+ */
 public class ControleFarmacia {
-	
+	/**
+	 * Construtor da classe ControleFarmacia.
+	 * Inicializa a instância da farmácia e preenche com alguns dados.
+	 */
 	private Farmacia farmacia = new Farmacia("Gammapharma",
 											 "04.974.867/0001-07");
 	
@@ -27,6 +37,11 @@ public class ControleFarmacia {
 	}
 	
 	// Métodos.
+	/**
+	 * Obtém um array de todos os produtos cadastrados na farmácia.
+	 *
+	 * @return Um array de produtos cadastrados na farmácia.
+	 */
 	public Produto[] getProdutos() {
 		// Retorna um array de produtos.
 		ArrayList<Produto> lista = new ArrayList<Produto>(); 
@@ -36,7 +51,12 @@ public class ControleFarmacia {
 		
 		return array;
 	}
-	
+	/**
+	 * Busca produtos na farmácia filtrados pelo nome.
+	 *
+	 * @param nome O nome do produto a ser buscado.
+	 * @return Um array de produtos filtrados pelo nome.
+	 */
 	public Produto[] buscaProdutos(String nome) {
 		// Retorna uma lista de produtos filtrados pelo nome.
 		ArrayList<Produto> lista = new ArrayList<Produto>();
@@ -45,7 +65,11 @@ public class ControleFarmacia {
 		Produto[] array = lista.toArray(new Produto[0]);
 		return array;
 	}
-	
+	/**
+	 * Obtém um array de todas as filiais da farmácia.
+	 *
+	 * @return Um array de filiais da farmácia.
+	 */
 	public Filial[] getFiliais() {
 		// Retorna um array de filiais.
 		ArrayList<Filial> lista = new ArrayList<Filial>();
@@ -55,7 +79,12 @@ public class ControleFarmacia {
 		
 		return array;
 	}
-	
+	/**
+	 * Busca filiais da farmácia filtradas pela cidade.
+	 *
+	 * @param cidade A cidade das filiais a serem buscadas.
+	 * @return Um array de filiais filtradas pela cidade.
+	 */
 	public Filial[] buscaFilial(String cidade) {
 		// Retorna uma lista de filiais filtradas pela cidade.
 		ArrayList<Filial> lista = new ArrayList<Filial>();
@@ -64,7 +93,14 @@ public class ControleFarmacia {
 		Filial[] array = lista.toArray(new Filial[0]);
 		return array;
 	}
-	
+	/**
+	 * Salva um produto na farmácia com base nos dados fornecidos.
+	 *
+	 * @param dados Os dados do produto a serem salvos.
+	 * @param pos A posição do produto na lista de produtos.
+	 * @param op A operação a ser realizada (1 - Cadastro de produto novo, 3 - Salvar produto existente).
+	 * @return true se o produto foi salvo com sucesso, caso contrário, false.
+	 */
 	public boolean salvarProduto(String[] dados, int pos, int op) {
 		// Salva um produto na farmácia a partir dos dados recebidos.
 		Produto prodNovo;
@@ -122,7 +158,14 @@ public class ControleFarmacia {
 		
 		return salvo;
 	}
-
+	/**
+	 * Salva uma filial na farmácia com base nos dados fornecidos.
+	 *
+	 * @param dados Os dados da filial a serem salvos.
+	 * @param pos A posição da filial na lista de filiais.
+	 * @param op A operação a ser realizada (2 - Cadastro de filial nova, 4 - Edição de filial já existente).
+	 * @return true se a filial foi salva com sucesso, caso contrário, false.
+	 */
 	public boolean salvarFilial(String[] dados, int pos, int op) {
 		// Salva uma filial na farmácia a partir dos dados recebidos.
 		Endereco end = new Endereco(dados[1], dados[6], dados[2], dados[5], dados[4]);
@@ -143,7 +186,12 @@ public class ControleFarmacia {
 		
 		return salvo;
 	}
-	
+	/**
+	 * Remove um produto específico da farmácia.
+	 *
+	 * @param pos A posição do produto na lista de produtos.
+	 * @return true se o produto foi removido com sucesso, caso contrário, false.
+	 */
 	public boolean removerProduto(int pos) {
 		// Remove um produto específico da farmácia.
 		boolean removido;
@@ -158,7 +206,12 @@ public class ControleFarmacia {
 		return removido;
 		
 	}
-	
+	/**
+	 * Remove uma filial específica da farmácia.
+	 *
+	 * @param pos A posição da filial na lista de filiais.
+	 * @return true se a filial foi removida com sucesso, caso contrário, false.
+	 */
 	public boolean removerFilial(int pos) {
 		// Remove uma filial específica da farmácia.
 		boolean removido;
@@ -169,7 +222,13 @@ public class ControleFarmacia {
 		
 		return removido;
 	}
-	
+	/**
+	 * Verifica se os dados fornecidos são válidos.
+	 *
+	 * @param dados Os dados a serem verificados.
+	 * @param op A operação a ser realizada (1 - Checar os dados de um produto, 2 - Checar os dados de uma filial).
+	 * @return true se os dados são válidos, caso contrário, false.
+	 */
 	public boolean checarDados(String[] dados, int op) {
 		// Checa os dados de um produto.
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");

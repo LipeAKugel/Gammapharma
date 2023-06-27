@@ -5,11 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 /**
- * A classe Farmacia representa uma farmácia.
+ * A classe Farmacia representa uma farmácia, contendo informações como nome,
+ * CNPJ e uma lista de filiais. Essa classe fornece métodos para acessar e modificar 
+ * essas informações, além de funcionalidades como adicionar e remover filiais, buscar
+ * filiais por cidade, obter a lista de produtos cadastrados em todas as filiais, buscar
+ * produtos por nome em todas as filiais, preencher a farmácia com dados de exemplo 
+ * e uma representação em formato de String que inclui o nome, CNPJ e a quantidade de filiais da farmácia.
+ * @author João Vitor e Felipe Amorim
+ * @since 2023
+ * @version 1.0
  */
 public class Farmacia {
 
-	// Atributos.
 	private String nome;
 	private String cnpj;
 	private ArrayList<Filial> listaFiliais;
@@ -26,59 +33,30 @@ public class Farmacia {
 		listaFiliais = new ArrayList<Filial>();
 	}
 	
-	// Gets
-	/**
-     * Obtém o nome da farmácia.
-     *
-     * @return O nome da farmácia.
-     */
 	public String getNome() {
 		return nome;
 	}
-	/**
-     * Obtém o CNPJ da farmácia.
-     *
-     * @return O CNPJ da farmácia.
-     */
+
 	public String getCnpj() {
 		return cnpj;
 	}
-	/**
-     * Obtém a lista de filiais da farmácia.
-     *
-     * @return A lista de filiais da farmácia.
-     */
+
 	public ArrayList<Filial> getlistaFiliais() {
 		return listaFiliais;
 	}
 	
-	// Sets
-	/**
-     * Define o nome da farmácia.
-     *
-     * @param nome O nome da farmácia.
-     */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	/**
-     * Define o CNPJ da farmácia.
-     *
-     * @param cnpj O CNPJ da farmácia.
-     */
+
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	/**
-     * Define a lista de filiais da farmácia.
-     *
-     * @param lista A lista de filiais da farmácia.
-     */
+
 	public void setlistaFiliais(ArrayList<Filial> lista) {
 		listaFiliais = lista;
 	}
 	
-	// Métodos.
 	/**
      * Adiciona uma filial à farmácia.
      *
@@ -191,12 +169,10 @@ public class Farmacia {
 		this.addFilial(filial01);
 	}
 	/**
-     * Retorna uma representação em formato de String da farmácia.
-     *
-     * @return Uma String contendo o nome, o CNPJ e o número de filiais da farmácia.
+     * @return Uma representação em forma de String da farmacia que contém: 
+     * nome, cnpj e quantidade de filiais.
      */
     @Override
-	// toString.
 	public String toString() {
 		return "Nome: " + nome + ", Cnpj: " + cnpj +
 			   ", Num de filiais:" + listaFiliais.size();

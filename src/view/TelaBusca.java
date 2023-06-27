@@ -7,7 +7,14 @@ import javax.swing.*;
 import controle.ControleFarmacia;
 import controle.ControleFilial;
 import controle.ControleProduto;
-
+/**
+ * A classe TelaBusca é responsável por exibir uma janela de busca na interface gráfica
+ * da farmácia. Ela permite pesquisar produtos por nome, pesquisar filiais por cidade
+ * e listar todos os produtos ou filiais.
+ * @author Felipe Amorim e João Vitor
+ * @since 2023
+ * @version 1.0
+ */
 public class TelaBusca implements ActionListener {
 	private JFrame janela;
 	private static ControleFarmacia dados;
@@ -22,6 +29,12 @@ public class TelaBusca implements ActionListener {
 	private String[] nomes_p = new String[50];
 	private String[] nomes_f = new String[50];
 	
+	/**
+	 * Construtor da classe TelaBusca. Cria uma nova instância da janela de busca.
+	 *
+	 * @param op    A opção de busca (1 para busca de produtos, 2 para busca de filiais).
+	 * @param dados Uma instância de ControleFarmacia contendo os dados da farmácia.
+	 */
 	public TelaBusca(int op, ControleFarmacia dados) {
 		this.dados = dados;
 		
@@ -109,7 +122,12 @@ public class TelaBusca implements ActionListener {
 			
 		}
 	}
-
+	/**
+	 * Método que é acionado quando ocorre uma ação nos botões da janela.
+	 * É responsável por executar as ações correspondentes às ações dos botões.
+	 *
+	 * @param e O evento de ação que ocorreu.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
