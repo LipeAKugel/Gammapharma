@@ -27,6 +27,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\felip\OneDrive\Área de Trabalho\UNB\3° Semestre\OO\App Farmácia\app_farmacia"/>
 			<item value="C:\Users\Joao\Documents\Aplicativo farmacia\app_farmacia"/>
 		</list>
 	</section>

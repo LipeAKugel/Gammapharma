@@ -16,12 +16,12 @@ import modelo.*;
  */
 public class TelaDetalhe implements ActionListener{
 	
-	private ControleFarmacia dados;
+	private static ControleFarmacia dados;
 	private String[] dadosAtuais;
 	private String[] dadosNovos;
 	private int op;
 	private int pos;
-	private JFrame janela;
+	private static JFrame janela;
 	private JButton salvar;
 	private JButton remover;
 	
@@ -90,6 +90,11 @@ public class TelaDetalhe implements ActionListener{
      * @param pos   a posição do objeto na lista de produtos ou filiais
      */
 	public TelaDetalhe (int op, ControleFarmacia dados, int pos) {
+		// Resete a janela.
+		if (janela != null) {
+			janela.dispose();
+		}
+		
 		this.dados = dados;
 		this.op = op;
 		this.pos = pos;
@@ -258,8 +263,8 @@ public class TelaDetalhe implements ActionListener{
 		lfilial = new JLabel("Filial: ");
 		lnome = new JLabel("Nome*: ");
 		lfabri = new JLabel("Fabricante*: ");
-		lpeso = new JLabel("Peso*: ");
-		lpreco = new JLabel("Preco*: ");
+		lpeso = new JLabel("Peso (kg)*: ");
+		lpreco = new JLabel("Preco (R$)*: ");
 		lmarca = new JLabel("Marca*: ");
 		lvali = new JLabel("Validade*: ");
 		lcategoria = new JLabel("Categoria: ");
@@ -276,8 +281,8 @@ public class TelaDetalhe implements ActionListener{
 		lfilial.setBounds(p_x, p_y, 60, 60);
 		lnome.setBounds(p_x, p_y+30, 60, 60);
 		lfabri.setBounds(p_x, p_y+30*2, 80, 60);
-		lpeso.setBounds(p_x, p_y+30*3, 60, 60);
-		lpreco.setBounds(p_x, p_y+30*4, 60, 60);
+		lpeso.setBounds(p_x, p_y+30*3, 90, 60);
+		lpreco.setBounds(p_x, p_y+30*4, 90, 60);
 		lmarca.setBounds(p_x, p_y+30*5, 60, 60);
 		lvali.setBounds(p_x, p_y+30*6, 60, 60);
 		lcategoria.setBounds(p_x, p_y+30*7, 90, 60);
@@ -395,13 +400,13 @@ public class TelaDetalhe implements ActionListener{
 		lcidade = new JLabel("Cidade*: " );
 		lcompl = new JLabel("Complemento: ");
 		
-		liden.setBounds(p_x, p_y, 80, 60);
-		llogra.setBounds(p_x, p_y+30, 80, 60);
+		liden.setBounds(p_x, p_y, 90, 60);
+		llogra.setBounds(p_x, p_y+30, 90, 60);
 		lcompl.setBounds(p_x, p_y+30*2, 90, 60);
-		lcep.setBounds(p_x, p_y+30*3, 30, 60);
-		lcnpj.setBounds(p_x, p_y+30*4, 60, 60);
-		lestado.setBounds(p_x, p_y+30*5, 60, 60);
-		lcidade.setBounds(p_x, p_y+30*6, 60, 60);
+		lcep.setBounds(p_x, p_y+30*3, 90, 60);
+		lcnpj.setBounds(p_x, p_y+30*4, 90, 60);
+		lestado.setBounds(p_x, p_y+30*5, 90, 60);
+		lcidade.setBounds(p_x, p_y+30*6, 90, 60);
 		
 		// JTextFields
 		iden = new JTextField();

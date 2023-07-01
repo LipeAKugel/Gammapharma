@@ -14,8 +14,8 @@ import controle.ControleProduto;
  * @version 1.0
  */
 public class TelaEditar implements ActionListener {
-	private JFrame janela;
-	private ControleFarmacia dados;
+	private static JFrame janela;
+	private static ControleFarmacia dados;
 	private int op;
 	private JLabel titulo;
 	private JList<String> listaAmbos;
@@ -34,6 +34,11 @@ public class TelaEditar implements ActionListener {
      * @param dados O objeto ControleFarmacia contendo os dados da farmácia.
      */
 	public void mostrarDados(int op, ControleFarmacia dados) {
+		// Resete a janela.
+		if (janela != null) {
+			janela.dispose();
+		}
+		
 		this.dados = dados;
 		this.op = op;
 		
@@ -129,7 +134,9 @@ public class TelaEditar implements ActionListener {
 			if (op == 1) {
 				nomes_p = new ControleProduto(dados).getNomeProdutos();
 				listaAmbos.setListData(nomes_p);
-			} else {
+			}
+			
+			if (op == 2){
 				nomes_f = new ControleFilial(dados).getNomeFiliais();
 				listaAmbos.setListData(nomes_f);
 			}
@@ -139,7 +146,7 @@ public class TelaEditar implements ActionListener {
 		if(src == cadastrarP) {
 			// Verifique se existem filiais.
 			if (dados.getFiliais().length > 0) {
-				new TelaDetalhe(1,dados,0);
+				TelaDetalhe detalhe = new TelaDetalhe(1,dados,0);
 			} else {
 				JOptionPane.showMessageDialog(null,"Não existem filiais!", null, 
 											  JOptionPane.ERROR_MESSAGE);
@@ -152,16 +159,23 @@ public class TelaEditar implements ActionListener {
 		
 		// Opções de edição.
 		if(src == editarP) {
-			int pos = listaAmbos.getSelectedIndex();
-			if (pos != -1) {
-				new TelaDetalhe(3,dados,pos);
+			// Não permita editar um produto que não existe.
+			if (dados.getProdutos().length > 0) {
+				int pos = listaAmbos.getSelectedIndex();
+				if ((pos != -1) && (pos < dados.getProdutos().length)) {
+					TelaDetalhe detalhe = new TelaDetalhe(3,dados,pos);
+				}
 			}
+			
 		}
 		
 		if(src == editarF) {
-			int pos = listaAmbos.getSelectedIndex();
-			if (pos != -1) {
-				new TelaDetalhe(4,dados,pos);
+			// Não permita editar se a listar estivar vazia, ou uma filial não existir.
+			if (dados.getFiliais().length > 0) {
+				int pos = listaAmbos.getSelectedIndex();
+				if ((pos != -1) && (pos < dados.getFiliais().length)) {
+					new TelaDetalhe(4,dados,pos);
+				}
 			}
 		}
 	}

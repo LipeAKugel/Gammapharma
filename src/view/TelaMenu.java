@@ -14,6 +14,7 @@ import controle.ControleFarmacia;
 public class TelaMenu implements ActionListener {
 	
 	// Crie o container JFrame.
+	TelaBusca telaBusca;
 	private static JFrame janela = new JFrame("Menu Inicial");
 	private static JLabel titulo = new JLabel("Menu Inicial");
 	private static JButton buscaProd = new JButton("Buscar Produto");
@@ -21,6 +22,7 @@ public class TelaMenu implements ActionListener {
 	private static JButton editarProduto = new JButton("Editar Produto");
 	private static JButton editarFilial = new JButton("Editar Filial");
 	private static ControleFarmacia dados = new ControleFarmacia();
+	
 	/**
      * Construtor da classe TelaMenu.
      * Cria e exibe a janela do menu inicial.
@@ -45,6 +47,11 @@ public class TelaMenu implements ActionListener {
 		editarProduto.setBounds(x_inicial,y_inicial+sep*2,b_comp,b_larg);
 		editarFilial.setBounds(x_inicial,y_inicial+sep*3,b_comp,b_larg);
 		
+		buscaProd.addActionListener(this);
+		buscaFilial.addActionListener(this);
+		editarFilial.addActionListener(this);
+		editarProduto.addActionListener(this);
+		
 		janela.setSize(j_comp, j_larg);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -67,14 +74,18 @@ public class TelaMenu implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		if (src == buscaProd)
-			new TelaBusca(1,dados);
-		if (src == buscaFilial)
-			new TelaBusca(2,dados);
-		if (src == editarProduto)
+		if (src == buscaProd) {
+			new TelaBusca(1, dados);
+		}
+		if (src == buscaFilial) {
+			new TelaBusca(2, dados);
+		}
+		if (src == editarProduto) {
 			new TelaEditar().mostrarDados(1,dados);
-		if (src == editarFilial)
+		}
+		if (src == editarFilial) {
 			new TelaEditar().mostrarDados(2,dados);
+		}
 	}
 	/**
      * Método principal para iniciar o programa.
@@ -83,10 +94,5 @@ public class TelaMenu implements ActionListener {
      */
 	public static void main(String args[]) {
 		TelaMenu menu = new TelaMenu();
-		
-		buscaProd.addActionListener(menu);
-		buscaFilial.addActionListener(menu);
-		editarFilial.addActionListener(menu);
-		editarProduto.addActionListener(menu);
 	}
 }

@@ -16,7 +16,7 @@ import controle.ControleProduto;
  * @version 1.0
  */
 public class TelaBusca implements ActionListener {
-	private JFrame janela;
+	private static JFrame janela;
 	private static ControleFarmacia dados;
 	private JLabel titulo;
 	private JLabel labelBusca;
@@ -36,6 +36,10 @@ public class TelaBusca implements ActionListener {
 	 * @param dados Uma instância de ControleFarmacia contendo os dados da farmácia.
 	 */
 	public TelaBusca(int op, ControleFarmacia dados) {
+		// Resete a janela.
+		if (janela != null) {
+			janela.dispose();
+		}
 		this.dados = dados;
 		
 		// Dimensões da janela.
@@ -57,6 +61,7 @@ public class TelaBusca implements ActionListener {
 		
 		janela.setLayout(null);
 		janela.setVisible(true);
+		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		// Crie os elementos dependendo da config de tela.
 		switch (op) {
@@ -122,6 +127,7 @@ public class TelaBusca implements ActionListener {
 			
 		}
 	}
+
 	/**
 	 * Método que é acionado quando ocorre uma ação nos botões da janela.
 	 * É responsável por executar as ações correspondentes às ações dos botões.
@@ -148,5 +154,5 @@ public class TelaBusca implements ActionListener {
 			listaFiliais.setListData(nomes_f);
 		}
 	}
-	
+
 }
