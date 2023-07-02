@@ -212,12 +212,12 @@ class TesteJUnit {
 		
 		assertTrue(dados.salvarProduto(dadosProd, 0, 1));
 		listaProdutos = dados.getProdutos();
-		assertEquals(produto.getNome(), listaProdutos[listaProdutos.length-1].getNome());
+		assertEquals(produto.getNome(), listaProdutos[3].getNome());
 		
 		// Testar edição de produto.
 		assertTrue(dados.salvarProduto(dadosProd, 0, 3));
 		listaProdutos = dados.getProdutos();
-		assertEquals(produto.getNome(), listaProdutos[listaProdutos.length-1].getNome());
+		assertEquals(produto.getNome(), listaProdutos[0].getNome());
 		
 		// Testar opção inexistente.
 		assertFalse(dados.salvarProduto(dadosProd, 0, 0));
